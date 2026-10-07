@@ -10,7 +10,7 @@ Download the self-contained [v0.2.5-beta.4](https://github.com/NitrogenSulfide/u
 
 1. Close UT2004. Use a native OldUnreal 3374+ installation; Steam/Proton installations have not been tested; support is not guaranteed.
 2. Back up any existing `VehicleSuite.u`, `VehicleStuffFix.u`, `WoRM2k4Fix.u` and their `.ucl` files. Extract this ZIP into the UT2004 game root so the six files under `System/` land in your game's `System/` directory.
-4. Add **Unreal Motorworks: Motorpool + Tuning** to your mutators, then open its configuration. Enable only the suite; do not also enable either Fix backend or the original VehicleStuff/Motorpool mutator.
+3. Add **Unreal Motorworks: Motorpool + Tuning** to your mutators, then open its configuration. Enable only the suite; do not also enable either Fix backend or the original VehicleStuff/Motorpool mutator.
 
 This ZIP contains three compiled packages, their cache registrations, and this README. It includes no custom vehicles, voice packs, personal presets, or game binaries. Only the suite is registered in the mutator browser; the two backend `.ucl` files are intentionally empty.
 
