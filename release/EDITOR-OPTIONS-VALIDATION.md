@@ -25,7 +25,7 @@ package identities and independent review remain in the private candidate record
 Portable GitHub CI does not compile or run these engine fixtures.
 
 Local candidate archive SHA-256:
-`619fd63651a4228b8d19940b3a3904d94be24b3cbdf3a3a840158c69a471ee8a`.
+`aad9b4bd44c65f45632c3b3bfd88d70fc67ed1c20143222d769b81f2fb5d5951`.
 
 Native Linux checks cover 1080p, 1440p and 4K on authenticated software-rendered
 private displays. A separate dedicated-server/client loopback check is scoped
