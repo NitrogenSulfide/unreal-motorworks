@@ -42,7 +42,7 @@ function Cue(GUIComponent Target)
     local FileLog F;
     F = Spawn(class'FileLog'); F.OpenLog("CustomProjectileInput-" $ Stage,, true);
     F.Logf("CLICK" @ int(Target.ActualLeft()+Target.ActualWidth()*0.5) @
-        int(Target.ActualTop()+Target.ActualHeight()*0.5));
+        int(Target.ActualTop()+Target.ActualHeight()*0.5) @ int(Target.Controller.MouseX) @ int(Target.Controller.MouseY));
     F.CloseLog(); F.Destroy();
 }
 function SetFields(string Primary, string Alternate, string Rate, string AltRate)
