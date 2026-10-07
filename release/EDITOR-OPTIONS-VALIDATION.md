@@ -14,7 +14,9 @@ recreated; arbitrary third-party vehicles need further gameplay testing.
 **Advanced** beside Health opens the former spawn-health controls in a popup.
 The popup includes base health synchronized with the main field, plus optional
 random spawn multipliers. Done returns to the vehicle page; the outer editor's
-Save & Close and Cancel retain their existing commit/rollback behavior.
+Save & Close and Cancel retain their existing commit/rollback behavior. The later
+editor usability candidate adds Save without closing, fixes typed health input, and
+moves the appearance control to each Weapons row; see EDITOR-USABILITY-VALIDATION.md.
 
 The native regression fixture extends the custom-projectile saving test with
 actual Advanced, Done and appearance-checkbox clicks, both-direction health
