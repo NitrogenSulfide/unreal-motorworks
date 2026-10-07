@@ -1,11 +1,13 @@
 class MutEditorOptionsTest extends MutCustomProjectileTest;
 var int HealthPhase;
 var bool bFinishPending;
+function PostBeginPlay() { SetTimer(4,True); }
 function KeyboardCue(GUIComponent Target, string Value)
 {
  local FileLog F;
+ Target.SetFocus(None);
  F=Spawn(class'FileLog');F.OpenLog("CustomProjectileInput-Options6",,true);
- F.Logf("TYPE" @ int(Target.ActualLeft()+Target.ActualWidth()*0.5) @ int(Target.ActualTop()+Target.ActualHeight()*0.5) @ int(Target.Controller.MouseX) @ int(Target.Controller.MouseY) @ Value);
+ F.Logf("KEYTYPE" @ int(Target.ActualLeft()+Target.ActualWidth()*0.5) @ int(Target.ActualTop()+Target.ActualHeight()*0.5) @ int(Target.Controller.MouseX) @ int(Target.Controller.MouseY) @ Value);
  F.CloseLog();F.Destroy();
 }
 function CheckGreenPartition()
@@ -103,6 +105,7 @@ function Timer()
         }
         else if (HealthPhase == 3)
         {
+            Log("[CustomProjectile] keyboard result=" @ moEditBox(Editor.HealthTab.Controls[6]).GetText() @ "cursor=" @ Menus.MouseX @ Menus.MouseY);
             Check(moEditBox(Editor.HealthTab.Controls[6]).GetText()=="760" &&
                 Editor.GetCurrentVP().Health==760 && moEditBox(Editor.MainTab.Controls[6]).GetText()=="760",
                 "actual keyboard enters multiple health digits and synchronizes main field");
