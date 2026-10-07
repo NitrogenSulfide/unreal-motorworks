@@ -6,6 +6,7 @@ var WoRM_vCfgFix Pool;
 var string AKey, BKey;
 var float OldZoom, OldY, OldZ, OldDistance;
 var int OldYaw, OldPitch;
+var rotator OldPoolRotation;
 function Check(bool OK,string Message)
 {
     if(OK) Log("[PreviewPolish] PASS" @ Message);
@@ -31,16 +32,17 @@ event PreBeginPlay()
     class'VehicleStuffFix'.static.SetVPElement(2,VP);class'VehicleStuffFix'.default.VPsLength=3;
 }
 function PostBeginPlay() { SetTimer(4,true); }
-function Hover(float X,float Y)
+function Hover(float X,float Y,optional bool Drag)
 {
     local FileLog F;
     F=Spawn(class'FileLog');F.OpenLog("PreviewPolishInput-" $ Stage,,true);
-    F.Logf("HOVER" @ int(X) @ int(Y));F.CloseLog();F.Destroy();
+    if (Drag) F.Logf("DRAG" @ int(X) @ int(Y));
+    else F.Logf("HOVER" @ int(X) @ int(Y));F.CloseLog();F.Destroy();
 }
 function VerifyHover(GUIController Menus,GUIComponent Input,bool Inside)
 {
     Check((Input.MouseCursorIndex==5)==Inside,"drag cursor only inside viewport stage=" $ Stage);
-    Log("[PreviewPolish] CURSOR stage=" $ Stage @ Menus.MouseX @ Menus.MouseY @ "index=" $ Input.MouseCursorIndex);
+    Log("[PreviewPolish] CURSOR stage=" $ Stage @ Menus.MouseX @ Menus.MouseY @ "index=" $ Input.MouseCursorIndex @ "active=" $ Menus.ActiveControl);
 }
 function Timer()
 {
@@ -114,15 +116,18 @@ function Timer()
         Check(Pool.PreviewWeapons[0].RelativeLocation==vect(12,-6,30) && Pool.PreviewWeapons[0].RelativeRotation.Yaw==4096,"Motorpool variant shows saved mount transform");
         Check(Abs(Pool.PreviewWeapons[0].DrawScale-class'ONSRVWebLauncher'.default.DrawScale*0.85)<0.001,"Motorpool variant shows saved mount scale");
         Check(Abs(Pool.PreviewInput.ActualTop()-Pool.PreviewViewTop)<1 && Abs(Pool.PreviewInput.ActualHeight()-Pool.PreviewViewHeight)<1,"Motorpool input and drawn viewport bounds match");
+        Pool.bSpinPreview=false;
         Hover(Pool.PreviewViewLeft+Pool.PreviewViewWidth*0.5,Pool.PreviewViewTop-35);
     }
     else if(Stage==6)
     {
         Check(!Pool.MouseInsidePreview(),"real pointer above viewport is outside");VerifyHover(Menus,Pool.PreviewInput,false);PC.ConsoleCommand("shot");
-        Hover(Pool.PreviewViewLeft+Pool.PreviewViewWidth*0.7,Pool.PreviewViewTop+Pool.PreviewViewHeight*0.7);
+        OldPoolRotation=Pool.PreviewActor.Rotation;
+        Hover(Pool.PreviewViewLeft+Pool.PreviewViewWidth*0.7,Pool.PreviewViewTop+Pool.PreviewViewHeight*0.7,true);
     }
     else if(Stage==7)
     {
+        Check(Pool.PreviewActor.Rotation!=OldPoolRotation,"real inside drag rotates Motorpool model");
         Check(Pool.MouseInsidePreview(),"real pointer inside viewport is inside");VerifyHover(Menus,Pool.PreviewInput,true);PC.ConsoleCommand("shot");
         Hover(Pool.PreviewViewLeft+Pool.PreviewViewWidth*0.5,Pool.PreviewViewTop+Pool.PreviewViewHeight+22);
     }
@@ -152,16 +157,19 @@ function Timer()
             Menus.MouseY>=Pool.Controls[49].ActualTop() && Menus.MouseY<Pool.Controls[49].ActualTop()+Pool.Controls[49].ActualHeight(),"real pointer hovers colored Save button");PC.ConsoleCommand("shot");
         Pool.OpenHighlightedTuning(None);Editor=VSGUI(Menus.TopPage());
         GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.MainTab,true);
+        Editor.MainTab.bSpinPreview=false;
     }
     else if(Stage==11)
         Hover(Editor.MainTab.PreviewViewLeft+Editor.MainTab.PreviewViewWidth+10,Editor.MainTab.PreviewViewTop+30);
     else if(Stage==12)
     {
         Check(!Editor.MainTab.MouseInsidePreview(),"real pointer beside tuning viewport is outside");VerifyHover(Menus,Editor.MainTab.PreviewInput,false);PC.ConsoleCommand("shot");
-        Hover(Editor.MainTab.PreviewViewLeft+Editor.MainTab.PreviewViewWidth*0.5,Editor.MainTab.PreviewViewTop+Editor.MainTab.PreviewViewHeight*0.5);
+        OldYaw=Editor.MainTab.PreviewYaw;
+        Hover(Editor.MainTab.PreviewViewLeft+Editor.MainTab.PreviewViewWidth*0.5,Editor.MainTab.PreviewViewTop+Editor.MainTab.PreviewViewHeight*0.5,true);
     }
     else if(Stage==13)
     {
+        Check(Editor.MainTab.PreviewYaw!=OldYaw,"real inside drag rotates tuning model");
         Check(Editor.MainTab.MouseInsidePreview(),"real pointer in tuning viewport is inside");VerifyHover(Menus,Editor.MainTab.PreviewInput,true);PC.ConsoleCommand("shot");
         Editor.CancelAndClose(None);Pool.CancelAndClose(None);
         Log("[PreviewPolish] RESULT failures=" $ Failures);PC.ConsoleCommand("exit");return;
