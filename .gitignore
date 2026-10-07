@@ -1,0 +1,14 @@
+dist/
+.private/
+.local-state/
+__pycache__/
+*.py[cod]
+*.u
+*.utx
+*.ukx
+*.usx
+*.uax
+*.ut2
+*.log
+.env
+.env.*
