@@ -154,6 +154,8 @@ function Timer()
             Log("[CustomProjectile] after reopen key=" @ Key @ "selected=" @ class'VehicleStuffFix'.static.ProfileKey(Editor.GetCurrentVP()) @ "HP=" @ Editor.GetCurrentVP().Health @ "appearance=" @ Editor.GetCurrentVP().DWeapons[0].bUseOriginalAppearance);
             Check(Editor.GetCurrentVP().Health==501 && Editor.GetCurrentVP().DWeapons[0].bUseOriginalAppearance,
                 "Cancel discards only edits made after Save");
+            moCheckBox(Editor.Controls[18]).SetComponentValue("False",true);
+            Editor.ModifiedFirstChanged(Editor.Controls[18]);
             GUIListBox(Editor.Controls[4]).List.SetTopItem(100);
         }
         else if (HealthPhase == 9)
