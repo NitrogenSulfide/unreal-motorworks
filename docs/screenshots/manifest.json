@@ -2,13 +2,13 @@
   "images": [
     {
       "file": "docs/screenshots/01-replacement-groups-3840x2160.png",
-      "sha256": "eda14813a071e76984070b48f4304a32e0e665dabcc19042a64f29cda5eed052",
+      "sha256": "ed0ff42e4bbaf5f63ff92143ee521b65f2e2b1dbc8c53a26821e6311568a3166",
       "width": 3840,
       "height": 2160
     },
     {
       "file": "docs/screenshots/02-vehicle-tuning-3840x2160.png",
-      "sha256": "309e6b388e34236cb3b7ae3f27685cabb1ea3791bfc7a80c27eb010fd0d728fe",
+      "sha256": "4cc39bf09f2a06f2ca11b7d737f5826fc1cf3d8e83f376c28bce33fce862cade",
       "width": 3840,
       "height": 2160
     },
@@ -20,7 +20,7 @@
     },
     {
       "file": "docs/screenshots/04-mount-placement-3840x2160.png",
-      "sha256": "49dfed9093c436d5631da95ee2e7b43c66122b38366fabc1c577facae747f8f9",
+      "sha256": "b53806a2fdd220cf12e5333e76b2632acd05ced335f80cd2c22eaef338125c6b",
       "width": 3840,
       "height": 2160
     }
