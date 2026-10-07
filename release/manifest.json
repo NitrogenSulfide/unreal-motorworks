@@ -1,7 +1,7 @@
 {
   "version": "0.2.5-beta.4",
   "archive": "UnrealMotorworks-v0.2.5-beta.4.zip",
-  "archive_sha256": "7ec25dae8ff86d7bd584cd609332df1769793512442c0c5b821ae8262c88df9d",
+  "archive_sha256": "72c1e2bbd3d296d44305378166e1c50deaa6ed496a34a97ff5124dc8ea7cee8a",
   "files": {
     "System/VehicleStuffFix.u": "43109c024d37cc7055497c0b073d223974ece79d18b8721cd454dc7e1e27051e",
     "System/VehicleStuffFix.ucl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -9,6 +9,6 @@
     "System/VehicleSuite.ucl": "81ca38079bb728192810c58ddc5e381d50a92238ba3991517314b5c8bba93852",
     "System/WoRM2k4Fix.u": "f9a4717f03c6468a38e5e0e46a7c96e26638157b8d5e58365d54961d06ea08bf",
     "System/WoRM2k4Fix.ucl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "README.md": "cbc2d65f88028bba9d6a1caf7fb9003a8086c19c75e8045d94ff5169fddd3550"
+    "README.md": "d8e83bcd6fbf7633312aff47687060a88831cef9ffd47f8975ba53873cc5fa6c"
   }
 }

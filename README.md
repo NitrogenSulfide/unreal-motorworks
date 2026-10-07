@@ -43,7 +43,7 @@ Both extra-client-package lists default to empty. A fresh install does not reque
 
 This is a public beta. The current packages were built and checked on native Linux OldUnreal 3374. The interface was checked at 1920×1080, 2560×1440, and 3840×2160. The latest package has not been validated on native Windows.
 
-**Limited multiplayer testing:** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. I also tested driving and firing. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
+**Limited multiplayer testing:** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. Driving and firing were tested by me before this standalone update. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
 
 **Standalone beta update:** the original mod downloads are no longer prerequisites. A fresh configuration now resolves directly to stock vehicle mappings. Custom vehicles remain optional separate downloads; this ZIP includes the editor and runtime, not a custom vehicle collection.
 

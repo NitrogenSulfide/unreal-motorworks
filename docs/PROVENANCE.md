@@ -47,7 +47,7 @@ The v2.51 readme credits Kangus as author and identifies its new code as
 copyright 2004-2005 Justin Follis. It encourages learning from the code but
 does not state an explicit redistribution or derivative-work license.
 
-## Compatibility confirmation
+## Historical compatibility confirmation (before beta.4)
 
 On 2026-09-29, the current native OldUnreal 3374 Vehicle Suite build was run in
 an isolated server fixture after replacing the local WoRM2k4 dependency with
@@ -55,12 +55,11 @@ the preserved original `WoRM2k4.u` hash above. Both backends loaded exactly
 once, Motorpool replacement and VehicleStuff tuning ran, and the fixture ended
 with `[VehicleSuiteFeatures] RESULT failures=0`.
 
-The original `WoRM2k4.u` is therefore a tested prerequisite, not a file that
-must be bundled in the Vehicle Suite archive.
+For releases through beta.3, the original `WoRM2k4.u` was a separately installed prerequisite. In beta.4, the replacement backend inherits native UT2004 classes directly and supplies its own editor state and stock mapping. Neither original mod is required or bundled; both were excluded from the standalone build and runtime validation.
 
 ## Publication status
 
-Author identities and the public prerequisite source are confirmed. On
+Author identities and the historical upstream source are confirmed. On
 2026-10-04 the user explicitly directed proceeding with a public release while
 preserving appropriate original-author credits, rather than waiting for author
 contact. No written upstream permission or new licence was obtained by that
@@ -71,6 +70,6 @@ uploads follow the fresh-install test and release presentation work.
 
 The Blue Natto credits avatar is the existing brand graphic selected by Blue Natto for the application. It is embedded in the compiled presentation package. Original avatar files and private conversion/build inputs are not shipped separately. Publication of the branded mod and the four feature screenshots was explicitly requested for this release.
 
-The legacy artwork is loaded optionally from the optional installed legacy mod and is not copied into this distribution. The original WoRM2k4 package, custom vehicles, character/voice assets, personal presets, private backend source, engine exports, and machine configuration are excluded. The four feature screenshots show stock UT2004 vehicle examples and an independently named tuning variant.
+The legacy artwork is loaded optionally from an already-installed legacy mod and is not copied into this distribution. The original WoRM2k4 package, custom vehicles, character/voice assets, personal presets, private backend source, engine exports, and machine configuration are excluded. The four feature screenshots show stock UT2004 vehicle examples and an independently named tuning variant.
 
 The historical licence observations above remain unchanged. Attribution and the publication decision do not grant a new upstream licence. This beta is a free fan-made modification for UT2004; it does not include the game or assert ownership of original authors' work.
