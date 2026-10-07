@@ -134,7 +134,7 @@ defaultproperties
 	Controls(3)=VSScaledButton'VehicleSuite.VehicleSuiteConfig.MotorpoolButton'
 
 	Begin Object Class=GUILabel Name=MotorpoolDescription
-		Caption="WoRM2k4 chooses the vehicle class before the factory spawns it."
+		Caption="Replacement groups choose the vehicle before its factory spawns it."
 		TextAlign=TXTA_Center
 		TextColor=(R=210,G=220,B=245,A=255)
 		FontScale=FNS_Small

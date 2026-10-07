@@ -71,6 +71,6 @@ uploads follow the fresh-install test and release presentation work.
 
 The Blue Natto credits avatar is the existing brand graphic selected by Blue Natto for the application. It is embedded in the compiled presentation package. Original avatar files and private conversion/build inputs are not shipped separately. Publication of the branded mod and the four feature screenshots was explicitly requested for this release.
 
-The legacy artwork is loaded optionally from the installed prerequisite and is not copied into this distribution. The original WoRM2k4 package, custom vehicles, character/voice assets, personal presets, private backend source, engine exports, and machine configuration are excluded. The four feature screenshots show stock UT2004 vehicle examples and an independently named tuning variant.
+The legacy artwork is loaded optionally from the optional installed legacy mod and is not copied into this distribution. The original WoRM2k4 package, custom vehicles, character/voice assets, personal presets, private backend source, engine exports, and machine configuration are excluded. The four feature screenshots show stock UT2004 vehicle examples and an independently named tuning variant.
 
 The historical licence observations above remain unchanged. Attribution and the publication decision do not grant a new upstream licence. This beta is a free fan-made modification for UT2004; it does not include the game or assert ownership of original authors' work.

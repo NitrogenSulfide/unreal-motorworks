@@ -107,7 +107,7 @@ function PostBeginPlay()
 	// GameInfo adds this coordinator to the chain after Spawn() completes. Adding
 	// the two backends here therefore places their independent timers ahead of
 	// the suite without copying either runtime into this class.
-	bWoRMReady = EnsureBackend(WoRMMutatorClassName, "WoRM2k4 Motorpool");
+	bWoRMReady = EnsureBackend(WoRMMutatorClassName, "Motorpool Remastered");
 	bVehicleStuffReady = EnsureBackend(VehicleStuffMutatorClassName, "VehicleStuff tuning");
 	bBackendsReady = bWoRMReady && bVehicleStuffReady;
 
@@ -138,5 +138,5 @@ defaultproperties
 	GroupName="VehicleArena"
 	IconMaterialName="MutatorArt.nosym"
 	FriendlyName="Unreal Motorworks: Motorpool + Tuning"
-	Description="Choose vehicle replacement groups with WoRM2k4, then tune the spawned vehicles with VehicleStuff through one configuration hub."
+	Description="Choose vehicle replacement groups, then tune the spawned vehicles with VehicleStuff through one configuration hub."
 }

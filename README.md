@@ -1,16 +1,15 @@
-# Unreal Motorworks v0.2.5-beta.3 — First Public Beta
+# Unreal Motorworks v0.2.5-beta.4 — Standalone Public Beta
 
 By **Blue Natto (also known as CissiaLikesEggs on Gamebanana)**, for native OldUnreal Unreal Tournament 2004 **3374 or later**.
 
-Choose vehicle replacement groups and tune vehicles through one mutator. Duplicate vehicles into independently named variants, change health and weapons, adjust weapon-mount position/rotation/scale, and optionally randomize spawn health. Unreal Motorworks coordinates maintained VehicleStuff Fix and WoRM2k4 Motorpool Fix backends.
+Choose vehicle replacement groups and tune vehicles through one mutator. Duplicate vehicles into independently named variants, change health and weapons, adjust weapon-mount position/rotation/scale, and optionally randomize spawn health. Unreal Motorworks includes its maintained tuning and replacement backends in one ZIP. Neither original VehicleStuff nor WoRM2k4 needs to be downloaded or installed.
 
-Download [v0.2.5-beta.3](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.2.5-beta.3).
+Download the self-contained [v0.2.5-beta.4](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.2.5-beta.4).
 
 ## Install
 
-1. Close UT2004. Use a native OldUnreal 3374+ installation; Steam/Proton installations are unsupported.
-2. Install the original **WoRM2k4 v2.51 ECE Edition** by Kangus if it is not already installed. Download the preserved release from [Unreal Archive](https://unrealarchive.org/unreal-tournament-2004/mutators/W/worm2k4-v2-5_7508a8b2.html). Its `System/WoRM2k4.u` is required and is not included here.
-3. Back up any existing `VehicleSuite.u`, `VehicleStuffFix.u`, `WoRM2k4Fix.u` and their `.ucl` files. Extract this ZIP into the UT2004 game root so the six files under `System/` land in your game's `System/` directory.
+1. Close UT2004. Use a native OldUnreal 3374+ installation; Steam/Proton installations have not been tested; support is not guaranteed.
+2. Back up any existing `VehicleSuite.u`, `VehicleStuffFix.u`, `WoRM2k4Fix.u` and their `.ucl` files. Extract this ZIP into the UT2004 game root so the six files under `System/` land in your game's `System/` directory.
 4. Add **Unreal Motorworks: Motorpool + Tuning** to your mutators, then open its configuration. Enable only the suite; do not also enable either Fix backend or the original VehicleStuff/Motorpool mutator.
 
 This ZIP contains three compiled packages, their cache registrations, and this README. It includes no custom vehicles, voice packs, personal presets, or game binaries. Only the suite is registered in the mutator browser; the two backend `.ucl` files are intentionally empty.
@@ -34,7 +33,7 @@ The rename keeps the internal `VehicleSuite`, `VehicleStuffFix`, and `WoRM2k4Fix
 
 ## Presets, updates, and removal
 
-Existing `KangMods.ini` and `VehicleStuffFix.ini` remain authoritative and are never bundled or overwritten. Back them up before experimenting. Old WoRM2k4 Motorpool settings can carry over if you already use that mod.
+Existing `KangMods.ini` and `VehicleStuffFix.ini` remain authoritative and are never bundled or overwritten. Back them up before experimenting. Existing Motorworks replacement groups and named group presets remain available. Original-only WoRM2k4 presets are not automatically imported; their INI sections are preserved.
 
 To uninstall, close UT2004 and remove only the six suite files listed above, or restore the versions/cache registrations backed up before installation. Keep `WoRM2k4.u` and shared `KangMods.ini` if other WoRM2k4 mutators use them. Keep tuning INIs to retain presets. For a fresh start, back up/remove `VehicleStuffFix.ini` and `VehicleSuite.ini`, and back up/reset only the Motorpool sections in shared `KangMods.ini`; its unrelated weapon settings should be preserved.
 
@@ -42,11 +41,11 @@ To uninstall, close UT2004 and remove only the six suite files listed above, or 
 
 Both extra-client-package lists default to empty. A fresh install does not request the author's custom vehicles or voice packs. Server admins using custom vehicles can list their actual package names under `[VehicleSuite.MutVehicleSuite]` in `VehicleSuite.ini` using `VehicleServerPackages[0]=YourPackage`, and further indices up to 31. `VoiceServerPackages[0]=YourVoicePackage` is an optional explicit override. Only configure content the server actually installs and needs. Standalone play skips this registration.
 
-This is the first public beta. The current packages were built and checked on native Linux OldUnreal 3374. The interface was checked at 1920×1080, 2560×1440, and 3840×2160. The latest package has not been validated on native Windows.
+This is a public beta. The current packages were built and checked on native Linux OldUnreal 3374. The interface was checked at 1920×1080, 2560×1440, and 3840×2160. The latest package has not been validated on native Windows.
 
 **Limited multiplayer testing:** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. I also tested driving and firing. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
 
-**Known beta issue:** a fresh Motorpool configuration may log empty-name startup warnings before stock-vehicle fallback. The game continues, but warning-free first-install behavior is not claimed. No presets or game content are bundled.
+**Standalone beta update:** the original mod downloads are no longer prerequisites. A fresh configuration now resolves directly to stock vehicle mappings. Custom vehicles remain optional separate downloads; this ZIP includes the editor and runtime, not a custom vehicle collection.
 
 Report your OldUnreal patch version, map, mutators, reproduction steps, and relevant UT2004 log messages in [Issues](https://github.com/NitrogenSulfide/unreal-motorworks/issues).
 
@@ -56,7 +55,7 @@ Report your OldUnreal patch version, map, mutators, reproduction steps, and rele
 - Original VehicleStuff: **[-will-]**, **Fraghouse Mod Team**; original testing: **Underscore**.
 - Original WoRM2k4 and Motorpool: **Kangus (Justin Follis)**; original thanks to WMP forum testers, Obscenery, and EvilDrWong.
 
-The Blue Natto avatar appears beside the centered author credit. The in-game Credits panel preserves the original-author attribution. Optional artwork is loaded from the installed WoRM2k4 package when available; the preserved original prerequisite uses the text fallback.
+The Blue Natto avatar appears beside the centered author credit. The in-game Credits panel preserves the original-author attribution. If the legacy mod is already installed, its artwork may appear in Credits; this is optional and is not needed to use Motorworks.
 
 ## Feature screenshots
 
