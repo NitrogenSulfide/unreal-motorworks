@@ -22,9 +22,8 @@ This ZIP contains three compiled packages, their cache registrations, and this R
 - **View / tune highlighted vehicle**: open the tuner at the selected entry.
 - **Duplicate as variant**: create a persistent independent profile. Name it, change settings, and save. Delete is available only for duplicates.
 - **Variants and previews**: duplicate names are numbered independently for each base vehicle. Motorpool previews use the selected profile’s saved weapon and placement settings. In-group first and Modified first start enabled.
-- **Placement**: Restore Default Values resets only the selected mount’s offsets, angles and scale, while preserving the preview camera. Original gun appearance leaves placement editable because those transforms still affect the gun and muzzle.
 - **Modification markers**: a green asterisk marks saved vehicle changes; a red asterisk marks changes made since opening the editor. Reverting to the opening values clears the red marker. Restore Defaults clears the marker immediately; use Save to commit the reset, or Cancel to discard it. The key sits below the Name field.
-- **Placement**: preview driver/passenger weapon-mount position (Unreal units), rotation (degrees), and uniform scale. Integrated stationary-turret weapons retain their native mounts.
+- **Placement**: Restore Default Values resets only the selected mount’s offsets, angles and scale, while preserving the preview camera. Original gun appearance leaves placement editable because transforms still affect the gun and muzzle. Preview driver/passenger weapon-mount position (Unreal units), rotation (degrees), and uniform scale. Integrated stationary-turret weapons retain their native mounts.
 - **In-group first**: bring current group members to the top without changing Search or Sort.
 - **Spawn health**: set minimum/maximum multipliers against configured health. A vehicle gets one roll when it spawns; live updates do not reroll it. Respawning stationary turrets get fresh tuning.
 - **Stationary turrets**: tune health/weapons in Vehicle Tuning & Weapons. They are placed map actors, not Motorpool factory slots.

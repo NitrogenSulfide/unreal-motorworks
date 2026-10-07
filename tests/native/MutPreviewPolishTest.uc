@@ -25,7 +25,10 @@ event PreBeginPlay()
     VP.VehicleClass="Onslaught.ONSHoverBike";VP.VehicleName="Manta";
     VP.DWeapons[0].WeaponClass="Onslaught.ONSHoverBikePlasmaGun";
     VP.PWeapons[0]=Empty.PWeapons[0];
-    class'VehicleStuffFix'.static.SetVPElement(1,VP);class'VehicleStuffFix'.default.VPsLength=2;
+    class'VehicleStuffFix'.static.SetVPElement(1,VP);
+    VP.VehicleClass="Onslaught.ONSManualGunPawn";VP.VehicleName="Node turret";
+    VP.DWeapons[0].WeaponClass="Onslaught.ONSAttackCraftGun";
+    class'VehicleStuffFix'.static.SetVPElement(2,VP);class'VehicleStuffFix'.default.VPsLength=3;
 }
 function PostBeginPlay() { SetTimer(4,true); }
 function Hover(float X,float Y)
@@ -129,6 +132,8 @@ function Timer()
         Pool.HighlightedVehicleClasses[3]="Onslaught.ONSHoverTank";Pool.UpdateSelectedDetails();
         Check(Pool.PreviewWeapons[0].Mesh==class'ONSHoverTankCannon'.default.Mesh,"base vehicle retains base gun preview");
         Check(Pool.PreviewWeapons[0].RelativeLocation==vect(0,0,0),"base vehicle retains base mount preview");
+        Pool.UpdatePreview("Onslaught.ONSManualGunPawn");
+        Check(Pool.PreviewActor.Mesh==class'ONSAttackCraftGun'.default.Mesh,"Motorpool node turret shows saved replacement gun");
         Pool.HighlightedVehicleClasses[3]=AKey;Pool.UpdateSelectedDetails();Pool.OpenHighlightedTuning(None);Editor=VSGUI(Menus.TopPage());
         W=Editor.GetVehicleWeapons(true,0);W.WeaponClass="Custom";W.bUseOriginalAppearance=true;
         Editor.SetMount(0,W);Editor.SaveAndClose(None);
@@ -142,7 +147,9 @@ function Timer()
     }
     else if(Stage==10)
     {
-        Check(Menus.ActiveControl==Pool.Controls[49],"real pointer hovers colored Save button");PC.ConsoleCommand("shot");
+        Log("[PreviewPolish] SAVE HOVER" @ Menus.MouseX @ Menus.MouseY @ "state=" $ Pool.Controls[49].MenuState @ "active=" $ Menus.ActiveControl);
+        Check(Menus.MouseX>=Pool.Controls[49].ActualLeft() && Menus.MouseX<Pool.Controls[49].ActualLeft()+Pool.Controls[49].ActualWidth() &&
+            Menus.MouseY>=Pool.Controls[49].ActualTop() && Menus.MouseY<Pool.Controls[49].ActualTop()+Pool.Controls[49].ActualHeight(),"real pointer hovers colored Save button");PC.ConsoleCommand("shot");
         Pool.OpenHighlightedTuning(None);Editor=VSGUI(Menus.TopPage());
         GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.MainTab,true);
     }
