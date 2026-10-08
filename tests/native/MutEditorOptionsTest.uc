@@ -34,14 +34,14 @@ function SetFields(string Primary, string Alternate, string Rate, string AltRate
     Super.SetFields(Primary, Alternate, Rate, AltRate);
     if (Dialog.ControlNum >= 2)
     {
-        moCheckBox(Editor.WeapTab.Controls[18+Dialog.ControlNum]).SetComponentValue("True",true);
-        Editor.WeapTab.OriginalAppearanceChanged(Editor.WeapTab.Controls[18+Dialog.ControlNum]);
+
+
     }
 }
 function CheckSettings(VehicleStuffFix.VehicleProperties VP, string Prefix)
 {
     Super.CheckSettings(VP, Prefix);
-    Check(VP.DWeapons[0].bUseOriginalAppearance, Prefix $ " retains original gun appearance option");
+    Check(!VP.DWeapons[0].bUseOriginalAppearance, Prefix $ " uses selected gun appearance");
     Check(VP.Health == 501 && VP.bRandomHealth, Prefix $ " retains synced advanced health values");
 }
 function FireAndCheck(CustomVehicleWeapon Gun, PlayerController PC, bool Alternate, class<Projectile> Expected)
@@ -120,23 +120,23 @@ function Timer()
             GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.WeapTab,true);
             Editor.SetWeaponClass("Onslaught.ONSHoverTankCannon",0);
             Editor.WeapTab.SetCBPosition("Onslaught.ONSHoverTankCannon",0);
-            moCheckBox(Editor.WeapTab.Controls[18]).SetComponentValue("True",true);
-            Editor.WeapTab.OriginalAppearanceChanged(Editor.WeapTab.Controls[18]);
+
+
             Check(Editor.GetCurrentVP().DWeapons[0].WeaponClass=="Onslaught.ONSHoverTankCannon",
                 "appearance toggle cannot overwrite an ordinary selected weapon");
             Editor.SetCustomProjectilesEnabled(0,true);
             // Reset the fixture checkbox before real pointer activation.
-            moCheckBox(Editor.WeapTab.Controls[18]).SetComponentValue("False",true);
+
 
         }
         else if (HealthPhase == 5)
         {
-            OptionCue(moCheckBox(Editor.WeapTab.Controls[18]).MyCheckBox,3);
+
         }
         else if (HealthPhase == 6)
         {
-            Check(Editor.GetCurrentVP().DWeapons[0].bUseOriginalAppearance,
-                "actual per-weapon checkbox enables original appearance");
+            Check(!Editor.GetCurrentVP().DWeapons[0].bUseOriginalAppearance,
+                "removed appearance checkbox does not enable a hidden override");
             Check(Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles,"appearance checkbox preserves custom projectile flag");
             PC.ConsoleCommand("shot");OptionCue(Editor.Controls[19],4);
         }

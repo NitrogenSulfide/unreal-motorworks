@@ -1,3 +1,5 @@
+> Historical development record, superseded by v0.2.5-beta.5. Descriptions and hashes below refer to their original candidates. Current behavior is documented in README and docs/VALIDATION.md.
+
 # Unpublished custom-projectile saving fix
 
 Public distribution is on hold: the repository is private and beta.4 is a draft.

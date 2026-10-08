@@ -95,7 +95,7 @@ function Timer()
   Editor.SetWeaponClass("Onslaught.ONSAttackCraftGun",0);Editor.UpdateDisplay();
   BeforeDialog=Editor.GetCurrentVP();BeforeMarker=Editor.VehicleMarkerState(Editor.CurrentIndex);
   WorkflowKey=class'VehicleStuffFix'.static.ProfileKey(BeforeDialog);
-  Check(Editor.WeapTab.Controls.Length==24,"weapons rows contain no custom projectile checkboxes");
+  Check(Editor.WeapTab.Controls.Length==18,"weapons rows contain no projectile or original appearance checkboxes");
   Check(Editor.MountTab.bSpinPreview && moCheckBox(Editor.MountTab.Controls[20]).IsChecked(),"Placement auto-rotate starts on with synchronized checkbox");
   Check(Editor.WeapTab.P[1].PClass!="Custom","weapon dropdown contains guns instead of a Custom mode");
   return;
@@ -138,10 +138,6 @@ function Timer()
   Check(Menus.TopPage()==Editor,"actual Done returns to tuning page");CheckSettings(Editor.GetCurrentVP(),"Done");
   GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.MainTab,true);
   Check(Editor.MainTab.PreviewWeapons[0].Mesh==class'ONSAttackCraftGun'.default.Mesh,"tuning preview shows selected gun with custom projectiles");
-  Editor.SetOriginalGunAppearance(0,true);
-  Check(Editor.MainTab.PreviewWeapons[0].Mesh==class'ONSHoverTankCannon'.default.Mesh,"original appearance overrides only the model");
-  Editor.SetOriginalGunAppearance(0,false);
-  Check(Editor.MainTab.PreviewWeapons[0].Mesh==class'ONSAttackCraftGun'.default.Mesh,"disabling original appearance restores selected gun model");
   GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.MountTab,true);
   BeforeMountYaw=Editor.MountTab.PreviewYaw;
  }

@@ -73,3 +73,7 @@ The Blue Natto credits avatar is the existing brand graphic selected by Blue Nat
 The legacy artwork is loaded optionally from an already-installed legacy mod and is not copied into this distribution. The original WoRM2k4 package, custom vehicles, character/voice assets, personal presets, private backend source, engine exports, and machine configuration are excluded. The four feature screenshots show stock UT2004 vehicle examples and an independently named tuning variant.
 
 The historical licence observations above remain unchanged. Attribution and the publication decision do not grant a new upstream licence. This beta is a free fan-made modification for UT2004; it does not include the game or assert ownership of original authors' work.
+
+## beta.5 attribution links
+
+VehicleStuff: [preserved listing](https://pwc.muffincdn.com/ut2004/?dir=mutators), [historical official contest page](https://zx.net.nz/mirror/www.unrealtournament.com/ut2003/ct_phase3/ct_mutator.html). WoRM2k4 Motorpool: [preserved release page](https://unrealarchive.org/unreal-tournament-2004/mutators/W/worm2k4-v2-5_7508a8b2.html). These are credit references, not dependencies. The user requested public beta publication again on 2026-10-07; prior attribution/provenance boundaries remain in effect.

@@ -9,7 +9,7 @@ function CheckSlots(string Context)
   if(i==2)continue; // The stock Goliath has one passenger turret.
   Box=moComboBox(Editor.WeapTab.Controls[i]);
   Check(Box.MenuState==MSAT_Disabled && Box.MyComboBox.MenuState==MSAT_Disabled && Box.MyComboBox.Edit.MenuState==MSAT_Disabled && Box.MyComboBox.MyShowListBtn.MenuState==MSAT_Disabled,Context @ "keeps absent slot" @ i @ "and its children disabled");
-  Check(Editor.WeapTab.Controls[i+6].MenuState==MSAT_Disabled && Editor.WeapTab.Controls[i+12].MenuState==MSAT_Disabled && Editor.WeapTab.Controls[i+18].MenuState==MSAT_Disabled,Context @ "keeps absent slot options disabled" @ i);
+  Check(Editor.WeapTab.Controls[i+6].MenuState==MSAT_Disabled && Editor.WeapTab.Controls[i+12].MenuState==MSAT_Disabled,Context @ "keeps absent slot options disabled" @ i);
  }
  Check(Editor.WeapTab.Controls[0].MenuState!=MSAT_Disabled && Editor.WeapTab.Controls[2].MenuState!=MSAT_Disabled,Context @ "retains valid driver and passenger controls");
  Check(Editor.ProfilesEqual(BeforeTabs,Editor.GetCurrentVP()),Context @ "preserves exact profile");
@@ -51,7 +51,7 @@ function Timer()
  {
   Box=moComboBox(Editor.WeapTab.Controls[1]);
   Check(Box.MenuState!=MSAT_Disabled && Box.MyComboBox.Edit.MenuState!=MSAT_Disabled && Box.MyComboBox.MyShowListBtn.MenuState!=MSAT_Disabled,"real second driver mount remains editable after tab roundtrip");
-  Check(Editor.WeapTab.Controls[7].MenuState!=MSAT_Disabled && Editor.WeapTab.Controls[13].MenuState!=MSAT_Disabled && Editor.WeapTab.Controls[19].MenuState!=MSAT_Disabled,"real second driver mount retains all supported options");
+  Check(Editor.WeapTab.Controls[7].MenuState!=MSAT_Disabled && Editor.WeapTab.Controls[13].MenuState!=MSAT_Disabled,"real second driver mount retains all supported options");
   Editor.SetWeaponClass("Onslaught.ONSHoverTankCannon",1);
   Check(Editor.GetCurrentVP().DWeapons[1].WeaponClass=="Onslaught.ONSHoverTankCannon","supported second driver mount still accepts gun changes");
  }
