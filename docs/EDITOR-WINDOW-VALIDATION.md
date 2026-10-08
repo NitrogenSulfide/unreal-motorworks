@@ -19,7 +19,8 @@ that reuses the same ID. Unsaved deletion does not emit a cleanup event.
 An isolated loopback dedicated server and client check ordinary driver and
 passenger replacement weapon appearance on and off. The client checks the
 selected class, projectile, firing interval, stock or replacement mesh and muzzle,
-and mount transform. Existing custom projectile and acknowledged/rejected remote
+and mount transform. An empty passenger weapon safely disables the appearance
+control without attempting an empty class load. Existing custom projectile and acknowledged/rejected remote
 save checks remain included. This is limited multiplayer testing; Internet play,
 third-party weapon-specific animations, full passenger driving/firing and every
 vehicle combination are not covered by this fixture.

@@ -44,6 +44,7 @@ simulated function Timer()
    class'VehicleStuffFix'.static.SetVPElement(0,VP);class'VehicleStuffFix'.default.VPsLength=1;
    PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());
    Editor.SelectProfile("Onslaught.ONSHoverTank");
+   Check(!Editor.CanUseOriginalAppearance(2),"empty passenger weapon safely disables appearance without a class load");
    Editor.HealthChange(2345);Editor.SaveWithoutClosing(None);
    Check(Editor.bSendingSave && Editor.VehicleMarkerState(Editor.CurrentIndex)==2,"remote Save remains unsaved until server acknowledgment");
    Check(!Editor.SaveWithoutClosing(None),"remote Save prevents overlapping transfers");
