@@ -1,23 +1,24 @@
-# Projectile editing without a mode checkbox
+# Weapon selection and projectile defaults
 
 Unpublished local candidate; the repository remains private and publication is held.
 
-The weapon rows no longer expose Custom projectiles checkboxes. Edit opens a draft
-of the selected gun's current firing settings. Cancel or Escape discards edits;
-Done without changes preserves the exact existing profile. Applying changed
-projectiles or intervals activates the internal custom firing state. Applying
-values matching the selected gun's defaults restores its native firing behavior.
-Existing active custom profiles remain supported; inactive historical overrides
-are retained in saved profiles but do not override defaults when opening Edit.
+Each supported mount offers its vehicle's original gun as a named Default choice,
+then None and a visual divider before the other guns. The divider cannot select a
+weapon. Choosing None clears the driver, passenger or stationary gun actor and
+its preview. Choosing a different gun clears the former gun's projectile and
+interval overrides. No original gun appearance checkbox remains; the selected
+gun supplies its appearance and muzzle. Legacy appearance flags are normalized
+off in memory, while the serialized field remains compatible with old configs.
 
-Use original gun appearance moves beneath each weapon selector. Its native text
-width is measured and a minimum16-pixel gap is included before the checkbox, so it sits beyond the caption at different resolutions.
-Placement auto-rotate starts enabled, with the visible checkbox synchronized to
-the rendering state; users can turn it off during the editing session.
+Edit opens the selected gun's draft. A new gun starts with its native projectile
+classes and intervals. Existing custom edits for the same gun remain available.
+Restore Defaults resets only the draft to that selected gun's native settings.
+Done applies changed values; Cancel and Escape discard edits and draft resets.
+Done without changes preserves the exact existing parent profile.
 
-The native workflow fixture covers applying changes, unchanged Done on both
-native/default and custom profiles, restoring selected-gun defaults, Cancel,
-Escape, save/reopen/restart, driver/passenger and stationary runtime firing,
-Motorpool preview, appearance row bounds and actual Placement rotation/toggle.
-Native package hashes, final screenshots and review outcomes are recorded in the
-private candidate evidence. Portable CI is not a native UI or gameplay test.
+The native regression checks cover None through the dropdown callback, both
+preview tabs, driver/passenger/stationary runtime removal, restoring gun actors,
+per-mount Default choices, separator rejection, switching gun defaults, physical
+Restore Defaults input, Cancel, save/reopen/restart and custom runtime firing.
+Final screenshots and exact package identities are recorded in private evidence.
+Portable CI is not a native UI or gameplay test.
