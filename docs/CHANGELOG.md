@@ -1,3 +1,11 @@
+# v0.3.0-beta.2
+
+- Fix optional DkoppII turret/body decorations in Motorpool and tuning previews, including Abrams MK2 and special secondary-gun attachment bones. Apply the same preview attachment lookup in both editors.
+- Preserve gameplay code, vehicle tuning, saved variants, groups and settings. Optional custom vehicle packages remain separate content; none is required or included.
+- Validate this package with 100 editor/save/reload checks at 1440p, 49 preview checks across 16 tank variants, and 60 standalone gameplay checks. The installed preview fix was also tested by me.
+
+Upgrade from beta.1 by backing up and replacing only `UnrealMotorworks.u` and `.ucl`; keep `UnrealMotorworks.ini`. Update server and client together. This is still a public beta; see [validation scope](VALIDATION.md).
+
 # v0.3.0-beta.1
 
 The first beta in the consolidated package line. This version changes runtime package identity, so earlier betas require configuration migration and server/client upgrades together.

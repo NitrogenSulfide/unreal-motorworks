@@ -1,22 +1,25 @@
-# v0.3.0-beta.1 validation
+# v0.3.0-beta.2 validation
 
-This release consolidates the maintained classes into `UnrealMotorworks.u` plus one `.ucl`. Its runtime package bytes are the same single-package candidate installed locally and confirmed by hands-on regression testing. The release manifest identifies the ZIP and every member. No original mutator download is required.
+This release changes only editor preview attachments for optional DkoppII guns. Runtime gameplay classes, registration, settings layout, and the upgrade helper are unchanged from beta.1. The release manifest identifies the ZIP and every member; the compiled package is the same build installed locally and confirmed by hands-on preview testing. Neither original mutator is required.
 
-| Evidence | Result and scope |
+| Evidence for the beta.2 package | Result and scope |
 | --- | --- |
-| Native Linux build | Zero errors and warnings; compiled class export checked |
-| Current editor / persistence | 100 checks each at 1080p, 1440p and 4K; actual pointer/keyboard interactions, Save/Cancel, defaults, gun changes, projectiles and fresh-process reload |
-| Native settings migration | 20 checks on import and 20 after restart; all config fields compared against copied legacy settings, old INI bytes preserved |
-| Custom Defender gameplay | 7 checks; actual Motorpool factory variant on Torlan, turret shell rendering, custom intervals and actor cleanup |
-| Dedicated server/client | One native dedicated server and one loopback client, separate configurations; 13 client and 5 server checks for joining, respawn, health, weapons and mount transforms; old Motorworks/original packages excluded |
-| Current screenshots | Four stock-feature captures at 3840×2160 on a private display; inspected before publication |
-| Installation and rollback | Native local upgrade verified two installed files, six retired files, migrated configuration and exact backups; portable tests cover stale plans, interrupted writes, and rollback |
-| Hands-on testing | Regression testing, driving and firing tested by me during beta development |
+| Native Linux build | Zero errors and warnings |
+| Editor / persistence | 100 checks at 2560×1440, including gun/default/projectile edits and a fresh-process reload |
+| Tank preview sweep | 49 checks across 16 tank variants; inspected final captures for rendered hulls and optional turret/body attachments |
+| Standalone gameplay | 60 checks across Goliath, Manta, Scorpion and Defender, covering entry, actual driving, firing and exit; custom projectile cases included |
+| Independent review | Preview helper, both editor integrations, optional dependency behavior and exact compiled package hashes checked; no demonstrated blockers |
+| Live installation | Two installed package hashes verified; collision backups verified; 149 INIs and four original-mutator files preserved |
+| Hands-on preview verification | Tested by me after installation; reported preview now looks correct |
 
-Portable CI tests the downloadable upgrade helper using temporary fixture directories, including preservation of legacy/shared settings, duplicate migration, untouched original mods, target changes, and write-failure recovery. It does not run the game. Private backend sources/build inputs and personal settings are not published.
+Plain Abrams rendered correctly in isolated tests, so its initially reported transparency could not be reproduced there. The tests do not establish compatibility with every custom vehicle or gun. Custom vehicle packs and private test captures are not included in the release.
 
-Multiplayer testing remains limited to loopback networking with one server and one client. Internet latency/packet loss, multiple clients, listen servers, downloads/redirects, reconnects and every third-party vehicle remain unverified. The DkoppII cosmetic shell has standalone gameplay evidence, not a dedicated-server cosmetic verification.
+## Earlier beta.1 evidence
 
-Earlier development checks covered remote Save acknowledgments, variant/group deletion, view interactions and tuning limits. Those records apply to their identified candidates; they do not establish exhaustive coverage for this ZIP. Native tests use software rendering on separate displays and do not establish graphics-driver parity or performance.
+Beta.1 passed 100 editor checks each at 1080p, 1440p and 4K, 20 native settings-import checks plus 20 after restart, and seven custom Defender factory/turret checks. It also passed a native dedicated-server plus loopback-client test with separate configurations: 13 client and five server checks for joining, variant respawn, health, replacement weapons and mount transforms. Those network checks were rerun on beta.1 before this preview fix; they were not repeated on the beta.2 package. Gameplay code is unchanged. Earlier 4K feature captures remain in the README.
 
-Steam/Proton installations have not been tested; support is not guaranteed. These exact packages remain unvalidated on native Windows. Source checks, isolated engine checks, live installation, hands-on testing, independent review, and publication are separate gates.
+Driving and firing were tested by me during beta development. Multiplayer coverage is limited: internet latency/packet loss, multiple clients, listen servers, downloads/redirects, reconnects and every third-party vehicle remain unverified. The DkoppII cosmetic shell has standalone gameplay evidence, not a dedicated-server cosmetic verification.
+
+Portable CI checks source boundaries, syntax, metadata, migration/install fixtures and credentials; it does not build or run the game. The unchanged upgrade helper was previously checked for legacy/shared settings preservation, stale plans, interrupted writes and rollback. Private backend source/build inputs and personal settings remain unpublished.
+
+Native visual tests use software rendering on separate displays and do not establish graphics-driver parity or performance. Steam/Proton installations have not been tested; support is not guaranteed. Native Windows remains unvalidated. Automated checks, independent review, installation, hands-on testing and publication are separate gates.
