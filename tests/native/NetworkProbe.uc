@@ -1,6 +1,6 @@
 class NetworkProbe extends Info;
 var ONSVehicle Target;
-var ONSWeapon TargetWeapon;
+var ONSWeapon TargetWeapon, TargetPassenger;
 var int Phase, ExpectedHealth, ExpectedMax, ReceivedPhase, Checks, Failures, WaitTicks;
 var float ExpectedScale;
 var VSIGGUI Editor;
@@ -9,7 +9,7 @@ var GUIController Menus;
 var MutMotorworksNetworkTest Harness;
 replication
 {
- reliable if(Role==ROLE_Authority) Target, TargetWeapon, Phase, ExpectedHealth, ExpectedMax, ExpectedScale;
+ reliable if(Role==ROLE_Authority) Target, TargetWeapon, TargetPassenger, Phase, ExpectedHealth, ExpectedMax, ExpectedScale;
  reliable if(Role<ROLE_Authority) Report;
 }
 simulated function PostNetBeginPlay() { Super.PostNetBeginPlay(); Log("[MotorworksNetworkClient] probe received netmode=" $ Level.NetMode $ " role=" $ Role); SetTimer(0.5,true); }
@@ -80,7 +80,7 @@ simulated function Timer()
   foreach DynamicActors(class'PlayerController',PC)
    if(PC.Player!=None) { PC.ConsoleCommand("exit"); return; }
  }
- if(Phase<=ReceivedPhase || Target==None) return;
+ if(((Phase<6 && Phase<=ReceivedPhase) || (Phase>=6 && Phase==ReceivedPhase)) || Target==None) return;
  W=TargetWeapon;
  if(W==None) return;
  // Give all replicated actors and the mount helper time to settle.
@@ -93,6 +93,29 @@ simulated function Timer()
  Check(Target.Health==ExpectedHealth,"server health reached client phase=" $ Phase);
  Check(Target.HealthMax==ExpectedMax,"server health maximum reached client phase=" $ Phase);
  if(Phase==1) Check(W.Class==class'ONSHoverTankCannon',"base tank cannon reached client");
+ else if(Phase==6 || Phase==7)
+ {
+  Check(W.Class==class'ONSAttackCraftGun',"ordinary replacement weapon class reached client phase=" $ Phase);
+  Check(W.ProjectileClass==class'ONSAttackCraftGun'.default.ProjectileClass && Abs(W.FireInterval-class'ONSAttackCraftGun'.default.FireInterval)<0.001,"ordinary replacement projectile and interval unchanged phase=" $ Phase);
+  if(Phase==6)
+  {
+   Check(W.Mesh==class'ONSHoverTankCannon'.default.Mesh,"ordinary driver original mesh reached client");
+   Check(W.WeaponFireAttachmentBone==class'ONSHoverTankCannon'.default.WeaponFireAttachmentBone && W.WeaponFireOffset==class'ONSHoverTankCannon'.default.WeaponFireOffset,"ordinary driver stock muzzle reached client");
+   Check(TargetPassenger!=None && TargetPassenger.Mesh==class'ONSTankSecondaryTurret'.default.Mesh,"ordinary passenger original mesh reached client");
+   Check(TargetPassenger!=None && TargetPassenger.WeaponFireAttachmentBone==class'ONSTankSecondaryTurret'.default.WeaponFireAttachmentBone && TargetPassenger.WeaponFireOffset==class'ONSTankSecondaryTurret'.default.WeaponFireOffset,"ordinary passenger stock muzzle reached client");
+  }
+  else
+  {
+   Check(W.Mesh==class'ONSAttackCraftGun'.default.Mesh,"ordinary driver replacement mesh restored on client");
+   Check(W.WeaponFireAttachmentBone==class'ONSAttackCraftGun'.default.WeaponFireAttachmentBone && W.WeaponFireOffset==class'ONSAttackCraftGun'.default.WeaponFireOffset,"ordinary driver replacement muzzle restored on client");
+   Check(TargetPassenger!=None && TargetPassenger.Mesh==class'ONSAttackCraftGun'.default.Mesh,"ordinary passenger replacement mesh restored on client");
+   Check(TargetPassenger!=None && TargetPassenger.WeaponFireAttachmentBone==class'ONSAttackCraftGun'.default.WeaponFireAttachmentBone && TargetPassenger.WeaponFireOffset==class'ONSAttackCraftGun'.default.WeaponFireOffset,"ordinary passenger replacement muzzle restored on client");
+  }
+  Check(TargetPassenger!=None && TargetPassenger.Class==class'ONSAttackCraftGun' && TargetPassenger.ProjectileClass==class'ONSAttackCraftGun'.default.ProjectileClass,"ordinary passenger replacement behavior preserved");
+  Check(VSize(W.RelativeLocation-vect(12,-6,24))<0.1,"ordinary mount translation reached client phase=" $ Phase);
+  Check(W.RelativeRotation.Yaw==4096,"ordinary mount rotation reached client phase=" $ Phase);
+  Check(Abs(W.DrawScale-ExpectedScale)<0.001,"ordinary mount scale reached client phase=" $ Phase);
+ }
  else
  {
   CW=CustomVehicleWeapon(W);

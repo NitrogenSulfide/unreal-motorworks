@@ -84,6 +84,31 @@ function Timer()
  }
  if(Stage==4 && Ack==2)
  {
+  V=Probe.Target;
+  VP=class'VehicleStuffFix'.static.GetDefaultProfile(1);
+  VP.DWeapons[0].WeaponClass="Onslaught.ONSAttackCraftGun";
+  VP.DWeapons[0].bUseOriginalAppearance=true;
+  VP.PWeapons[0].WeaponClass="Onslaught.ONSAttackCraftGun";
+  VP.PWeapons[0].bUseOriginalAppearance=true;
+  Tuner.SetLiveProfile(1,VP);Tuner.ChangeVehicleProps(V,1);
+  Check(V.Weapons[0].Class==class'ONSAttackCraftGun' && V.Weapons[0].Mesh==class'ONSHoverTankCannon'.default.Mesh,"ordinary replacement keeps behavior class and gets stock driver mesh");
+  Check(V.WeaponPawns[0].Gun.Class==class'ONSAttackCraftGun' && V.WeaponPawns[0].Gun.Mesh==class'ONSTankSecondaryTurret'.default.Mesh,"ordinary passenger replacement gets original mesh");
+  Probe.TargetWeapon=V.Weapons[0];Probe.TargetPassenger=V.WeaponPawns[0].Gun;
+  Probe.Phase=6;Stage=8;return;
+ }
+ if(Stage==8 && Ack==6)
+ {
+  V=Probe.Target;
+  VP=class'VehicleStuffFix'.static.GetDefaultProfile(1);
+  VP.DWeapons[0].bUseOriginalAppearance=false;
+  VP.PWeapons[0].bUseOriginalAppearance=false;
+  Tuner.SetLiveProfile(1,VP);Tuner.ChangeVehicleProps(V,1);
+  Probe.TargetWeapon=V.Weapons[0];Probe.TargetPassenger=V.WeaponPawns[0].Gun;
+  Probe.ExpectedScale=class'ONSAttackCraftGun'.default.DrawScale*0.75;
+  Probe.Phase=7;Stage=9;return;
+ }
+ if(Stage==9 && Ack==7)
+ {
   PC=PlayerController(Probe.Owner);PC.PlayerReplicationInfo.bAdmin=True;
   Probe.Phase=3;Stage=5;return;
  }
