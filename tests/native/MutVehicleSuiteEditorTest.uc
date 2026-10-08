@@ -139,11 +139,11 @@ function TestPresetDefaults(PlayerController PC)
 
     // The runtime test uses an isolated UT2004 config tree. Start with no
     // carried-over custom set so each lifecycle assertion has a fixed baseline.
-    class'WoRM2k4Fix.WoRM_vCfgFix'.default.CustomPreset.Length = 0;
+    class'UnrealMotorworks.WoRM_vCfgFix'.default.CustomPreset.Length = 0;
     class'MutWoRM_vFix'.default.VehicleGroupPresets.Length = 0;
     class'MutWoRM_vFix'.default.GoliathGroupPresets.Length = 0;
     class'MutWoRM_vFix'.default.LastSavedPresetName = "";
-    class'WoRM2k4Fix.WoRM_vCfgFix'.static.StaticSaveConfig();
+    class'UnrealMotorworks.WoRM_vCfgFix'.static.StaticSaveConfig();
     class'MutWoRM_vFix'.static.StaticSaveConfig();
 
     PoolPage.SelectedCars[0] = "Onslaught.ONSHoverTank";
@@ -156,9 +156,9 @@ function TestPresetDefaults(PlayerController PC)
 
     // Prior Motorworks releases kept name metadata in the legacy GUI section.
     // Reopen with only authoritative saved group records to verify migration.
-    class'WoRM2k4Fix.WoRM_vCfgFix'.default.CustomPreset.Length = 0;
+    class'UnrealMotorworks.WoRM_vCfgFix'.default.CustomPreset.Length = 0;
     PoolPage.CancelAndClose(None);
-    PC.ClientOpenMenu("WoRM2k4Fix.WoRM_vCfgFix");
+    PC.ClientOpenMenu("UnrealMotorworks.WoRM_vCfgFix");
     Menus = GUIController(PC.Player.GUIController);
     ReopenedPage = WoRM_vCfgFix(Menus.TopPage());
     if (ReopenedPage == None)
@@ -184,7 +184,7 @@ function TestPresetDefaults(PlayerController PC)
         "invalid preset save leaves the prior default intact");
 
     PoolPage.CancelAndClose(None);
-    PC.ClientOpenMenu("WoRM2k4Fix.WoRM_vCfgFix");
+    PC.ClientOpenMenu("UnrealMotorworks.WoRM_vCfgFix");
     Menus = GUIController(PC.Player.GUIController);
     ReopenedPage = WoRM_vCfgFix(Menus.TopPage());
     if (ReopenedPage == None)
@@ -202,7 +202,7 @@ function TestPresetDefaults(PlayerController PC)
         "deleting the default preset clears its saved name");
 
     PoolPage.CancelAndClose(None);
-    PC.ClientOpenMenu("WoRM2k4Fix.WoRM_vCfgFix");
+    PC.ClientOpenMenu("UnrealMotorworks.WoRM_vCfgFix");
     Menus = GUIController(PC.Player.GUIController);
     ReopenedPage = WoRM_vCfgFix(Menus.TopPage());
     if (ReopenedPage == None)
@@ -213,10 +213,10 @@ function TestPresetDefaults(PlayerController PC)
     Check(moComboBox(ReopenedPage.Controls[26]).GetText() ~= "New set name" &&
         !(ReopenedPage.SelectedPoolTexts[0] ~= "Onslaught.ONSAttackCraft"), "reopening after deletion does not load a stale default preset");
     PoolPage = ReopenedPage;
-    class'WoRM2k4Fix.WoRM_vCfgFix'.default.CustomPreset.Length = 0;
+    class'UnrealMotorworks.WoRM_vCfgFix'.default.CustomPreset.Length = 0;
     class'MutWoRM_vFix'.default.VehicleGroupPresets.Length = 0;
     class'MutWoRM_vFix'.default.GoliathGroupPresets.Length = 0;
-    class'WoRM2k4Fix.WoRM_vCfgFix'.static.StaticSaveConfig();
+    class'UnrealMotorworks.WoRM_vCfgFix'.static.StaticSaveConfig();
     class'MutWoRM_vFix'.static.StaticSaveConfig();
 }
 
@@ -239,7 +239,7 @@ function Timer()
         // Keep an underlying page while testing close/reopen. Closing the
         // last standalone menu otherwise returns to the main menu/disconnects.
         PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");
-        PC.ClientOpenMenu("WoRM2k4Fix.WoRM_vCfgFix");
+        PC.ClientOpenMenu("UnrealMotorworks.WoRM_vCfgFix");
         Menus = GUIController(PC.Player.GUIController);
         PoolPage = WoRM_vCfgFix(Menus.TopPage());
         TestPresetDefaults(PC);
@@ -286,7 +286,7 @@ function Timer()
                 "Motorpool Save commits exact ordered variant group");
             PoolPage.SelectedStrategies[0]=1;
             PoolPage.CancelAndClose(None);
-            Menus.OpenMenu("WoRM2k4Fix.WoRM_vCfgFix");PoolPage=WoRM_vCfgFix(Menus.TopPage());
+            Menus.OpenMenu("UnrealMotorworks.WoRM_vCfgFix");PoolPage=WoRM_vCfgFix(Menus.TopPage());
             Check(PoolPage.SelectedStrategies[0]==0,"Motorpool Cancel discards only changes after Save");
             Check(GUILabel(PoolPage.Controls[23]).TextColor.R==255 &&
                 InStr(GUILabel(PoolPage.Controls[48]).Caption,"Synchronized in-order")>=0,
@@ -368,7 +368,7 @@ function Timer()
         List = GUIListBox(PoolPage.Controls[20]).List;
         Check(List.FindIndex("11", true, true) < 0 && List.FindIndex("12", true, true) < 0,
             "Motorpool contains only factory-spawned stock vehicle slots");
-        PC.ClientOpenMenu("VehicleStuffFix.VSGUI");
+        PC.ClientOpenMenu("UnrealMotorworks.VSGUI");
         Editor = VSGUI(Menus.TopPage());
         Check(Editor != None, "Vehicle Tuning opens directly");
         if (Editor != None)

@@ -77,3 +77,7 @@ The historical licence observations above remain unchanged. Attribution and the 
 ## beta.5 attribution links
 
 VehicleStuff: [preserved listing](https://pwc.muffincdn.com/ut2004/?dir=mutators), [historical official contest page](https://zx.net.nz/mirror/www.unrealtournament.com/ut2003/ct_phase3/ct_mutator.html). WoRM2k4 Motorpool: [preserved release page](https://unrealarchive.org/unreal-tournament-2004/mutators/W/worm2k4-v2-5_7508a8b2.html). These are credit references, not dependencies. The user requested public beta publication again on 2026-10-07; prior attribution/provenance boundaries remain in effect.
+
+## v0.3.0-beta.1 consolidation
+
+The same maintained classes and branded avatar are assembled into one Motorworks package. The original mutators, their standalone packages, custom vehicles, personal configuration and private backend source remain excluded. The optional upgrade helper contains public configuration-migration logic and class identifiers; it does not ship backend source or licensed game assets. Existing attribution and permission observations remain unchanged.

@@ -55,7 +55,7 @@ function Timer()
     Menus=GUIController(PC.Player.GUIController);
     if(Stage==0)
     {
-        PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");PC.ClientOpenMenu("VehicleSuite.VehicleSuiteConfig");
+        PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");PC.ClientOpenMenu("UnrealMotorworks.VehicleSuiteConfig");
         Hub=VehicleSuiteConfig(Menus.TopPage());Hub.OpenVehicleTuning(None);Editor=VSGUI(Menus.TopPage());
         // Reproduce the user's full-screen editor, as well as the regular modal fixture.
         Editor.bBoundToParent=false;Editor.bScaleToParent=false;Editor.bNeverScale=true;

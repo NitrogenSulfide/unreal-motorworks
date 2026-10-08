@@ -10,20 +10,10 @@ from pathlib import Path
 
 
 EXPECTED_MEMBERS = {
-    "README.md",
-    "System/VehicleSuite.u",
-    "System/VehicleSuite.ucl",
-    "System/VehicleStuffFix.u",
-    "System/VehicleStuffFix.ucl",
-    "System/WoRM2k4Fix.u",
-    "System/WoRM2k4Fix.ucl",
+    "README.md", "upgrade-settings.py",
+    "System/UnrealMotorworks.u", "System/UnrealMotorworks.ucl",
 }
-
-REQUIRED_PACKAGES = {
-    "System/VehicleSuite.u",
-    "System/VehicleStuffFix.u",
-    "System/WoRM2k4Fix.u",
-}
+REQUIRED_PACKAGES = {"System/UnrealMotorworks.u"}
 
 
 def sha256(data: bytes) -> str:
@@ -51,6 +41,8 @@ def main() -> int:
         for name, expected_hash in expected_files.items()
         if name in EXPECTED_MEMBERS
     }
+    if set(expected_files) != EXPECTED_MEMBERS:
+        raise SystemExit('build manifest must hash every release member')
     if not REQUIRED_PACKAGES <= release_hashes.keys():
         missing = sorted(REQUIRED_PACKAGES - release_hashes.keys())
         raise SystemExit(f"build manifest is missing release package hashes: {missing}")
@@ -59,7 +51,10 @@ def main() -> int:
         raise SystemExit(f"build manifest contains unexpected release files: {sorted(unknown)}")
 
     with zipfile.ZipFile(args.archive) as archive:
-        members = {name for name in archive.namelist() if not name.endswith("/")}
+        member_list = [name for name in archive.namelist() if not name.endswith("/")]
+        members = set(member_list)
+        if len(member_list) != len(members):
+            raise SystemExit("duplicate archive members")
         if members != EXPECTED_MEMBERS:
             raise SystemExit(f"unexpected archive members: {sorted(members ^ EXPECTED_MEMBERS)}")
 
@@ -68,15 +63,11 @@ def main() -> int:
             if actual_hash != expected_hash:
                 raise SystemExit(f"release hash mismatch for {member}: {actual_hash}")
 
-        suite_cache = archive.read("System/VehicleSuite.ucl").decode("utf-8")
+        suite_cache = archive.read("System/UnrealMotorworks.ucl").decode("utf-8")
         if suite_cache.count("Mutator=(") != 1:
-            raise SystemExit("VehicleSuite.ucl must contain exactly one mutator registration")
-        if "VehicleSuite.MutVehicleSuite" not in suite_cache:
-            raise SystemExit("VehicleSuite.ucl does not register the suite mutator")
-
-        for member in ("System/VehicleStuffFix.ucl", "System/WoRM2k4Fix.ucl"):
-            if archive.read(member) != b"":
-                raise SystemExit(f"standalone cache stub is not blank: {member}")
+            raise SystemExit("UnrealMotorworks.ucl must contain exactly one mutator registration")
+        if "UnrealMotorworks.MutVehicleSuite" not in suite_cache:
+            raise SystemExit("UnrealMotorworks.ucl does not register the suite mutator")
 
         forbidden = {"System/KangMods.ini", "System/VehicleStuffFix.ini", "System/WoRM2k4.u"}
         if members & forbidden:

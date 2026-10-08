@@ -43,7 +43,7 @@ simulated function Timer()
    VP.SpeedScale=1;VP.Friction=1;VP.Mass=1;VP.WheelScale=1;VP.JumpHeight=1;VP.HoverHeight=1;
    VP.DWeapons[0].WeaponClass="Onslaught.ONSHoverTankCannon";
    class'VehicleStuffFix'.static.SetVPElement(0,VP);class'VehicleStuffFix'.default.VPsLength=1;
-   PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());
+   PC.ClientOpenMenu("UnrealMotorworks.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());
    Editor.SelectProfile("Onslaught.ONSHoverTank");
    Check(!Editor.CanUseOriginalAppearance(2),"empty passenger weapon safely disables appearance without a class load");
    Editor.SetWeaponClass("Onslaught.ONSAttackCraftGun",0);Editor.SetCustomProjectilesEnabled(0,true);
@@ -57,7 +57,7 @@ simulated function Timer()
   {
    Check(GUIButton(Editor.Controls[19]).Caption=="Save","remote Save received server acknowledgment");
    Check(Editor.GetCurrentVP().Health==3456 && Editor.VehicleMarkerState(Editor.CurrentIndex)==2,"edit made while sending remains red after acknowledgment");
-   Editor.CancelAndClose(None);PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");
+   Editor.CancelAndClose(None);PC.ClientOpenMenu("UnrealMotorworks.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");
    Check(Editor.GetCurrentVP().Health==2345,"Cancel preserves only the acknowledged remote snapshot");
    Check(Editor.GetCurrentVP().VehicleName=="Network save tank","remote snapshot preserves spaces in the vehicle name");
    Check(Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles && Editor.GetCurrentVP().DWeapons[0].WeaponClass=="Onslaught.ONSAttackCraftGun","remote reopened snapshot keeps selected gun and independent flag");
@@ -66,14 +66,14 @@ simulated function Timer()
   }
   if(Phase==4 && SaveStage==2)
   {
-   PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");
+   PC.ClientOpenMenu("UnrealMotorworks.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");
    Editor.HealthChange(4567);Editor.SaveWithoutClosing(None);SaveStage=3;return;
   }
   if(Phase==4 && SaveStage==3 && !Editor.bSendingSave)
   {
    Check(GUIButton(Editor.Controls[19]).Caption=="Retry Save","rejected remote Save reports missing acknowledgment");
    Check(Editor.VehicleMarkerState(Editor.CurrentIndex)==2,"rejected remote Save does not advance baseline");
-   Editor.CancelAndClose(None);PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");
+   Editor.CancelAndClose(None);PC.ClientOpenMenu("UnrealMotorworks.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");
    Check(Editor.GetCurrentVP().Health==2345,"Cancel after rejected Save retains previously acknowledged settings");
    Editor.CancelAndClose(None);SaveStage=4;Report(4,Checks,Failures);return;
   }

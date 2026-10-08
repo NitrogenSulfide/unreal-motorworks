@@ -1,3 +1,15 @@
+# v0.3.0-beta.1
+
+The first beta in the consolidated package line. This version changes runtime package identity, so earlier betas require configuration migration and server/client upgrades together.
+
+- One `UnrealMotorworks.u` and one `.ucl`, with settings in `UnrealMotorworks.ini`.
+- Complete mod in one ZIP; no separate original VehicleStuff or WoRM2k4 dependency.
+- Optional preview-first upgrade helper preserves profiles, variants, groups, named presets and exact backups while retiring only the six earlier Motorworks package files.
+- Updated fresh-install, upgrade, uninstall and server configuration instructions.
+- Additional editor/persistence checks at 1080p and 4K, native migration/restart checks, repeated dedicated-server/client checks, and hands-on regression confirmation.
+
+This remains a public beta. Native Windows, internet multiplayer and exhaustive custom-vehicle compatibility are unverified; Steam/Proton support is not guaranteed.
+
 # v0.2.5-beta.5
 
 Standalone public beta after the beta.4 distribution hold. This version keeps the existing internal package/configuration names and does not overwrite presets.
