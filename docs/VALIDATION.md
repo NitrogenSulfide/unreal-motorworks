@@ -1,22 +1,22 @@
-# v0.2.5-beta.4 validation
+# v0.2.5-beta.5 validation
 
-This release rebuilds the replacement backend without inheriting classes from either original mod. `release/manifest.json` records the exact downloadable archive and member hashes.
+This beta ships the exact compiled packages installed and tested locally after the weapon editor, reset-marker and DkoppII turret fixes. The release manifest identifies the downloadable ZIP and every member. Neither original VehicleStuff nor WoRM2k4 is bundled or required.
 
 | Evidence | Result and scope |
 | --- | --- |
 | Native Linux build | Zero errors and warnings |
-| Gameplay fixtures | 25 checks passed |
-| Editor fixtures | 46 checks passed |
-| Actual mouse interactions | 25 checks passed, including Reset and double-click membership |
-| Layout | 45 checks at each of 1080p, 1440p and 4K; screenshots inspected |
-| Installation/rollback fixture | Collision round trip passed; backup and installed hashes verified |
-| Local dedicated server/client | 13 client and 5 server checks passed: joining, variant respawn, health/max, weapons and mount transforms |
-| Hands-on testing | Driving and firing were tested by me before beta.4; not repeated for this exact build |
+| Current weapon editor / persistence | 100 checks; real pointer and keyboard interactions, Save/Cancel, defaults, gun changes, projectiles and fresh-process reload |
+| Current custom Defender gameplay | 7 checks; actual Motorpool factory variant on Torlan, turret shell rendering, custom intervals and actor cleanup |
+| Current standalone server/client | One native dedicated server and one local client, separate configurations, both original mods absent; 13 client and 5 server checks passed for joining, respawn, health, weapons and mount transforms |
+| Current screenshots | Four stock-feature captures at 3840×2160 on a separate virtual display; inspected before publication |
+| Installation and rollback | Fresh and collision round trips; installed/member/backup hashes checked; existing presets preserved |
+| Live installation | Current game packages match tested bytes; saved configuration retained |
+| Hands-on testing | Driving and firing tested by me during beta development; latest turret correction still awaits a separate user confirmation |
 
-Server and client testing used native OldUnreal 3374, loopback networking, separate copied configurations and a private display. Latest-candidate testing with the original WoRM2k4 package absent is recorded in the release review. Both original mods are excluded from the standalone build and dedicated-server/client test trees. Full logs and private source manifests remain private; public summaries do not substitute for those records.
+Earlier development checks covered layouts at 1080p, 1440p and 4K, remote Save acknowledgments, variant/group deletion, view interactions and tuning limits. Those records apply to their identified earlier candidates; they are not a claim that every scenario was rerun on this ZIP. Current editor checks use private 1440p software rendering.
 
-Unverified scenarios include internet latency/packet loss, multiple clients, reconnects/late joins, listen servers, package downloading/redirects and the latest packages on native Windows. Some test fixtures inherited unrelated inventory/HUD warnings; this is not a warning-free clean-install claim. Fresh stock fallback no longer attempts an empty class-name load.
+Multiplayer support has limited testing: loopback networking, one dedicated server and one client. Internet latency/packet loss, multiple clients, listen servers, downloads/redirects, reconnects and every third-party vehicle remain unverified. The latest DkoppII cosmetic shell fix has standalone gameplay evidence, not a dedicated-server cosmetic verification.
 
-Portable CI validates source and release metadata only. Native gameplay, visual checks, independent review, live installation and publication are separate gates.
+Test fixtures may inherit unrelated inventory/HUD warnings from copied game configuration. The suite-specific regressions had no errors; this is not a guarantee that every installation has warning-free logs. Private evidence, backend source and build-input manifests remain private.
 
-Steam/Proton installations have not been tested; support is not guaranteed. Native Windows remains unvalidated for these exact packages.
+Steam/Proton installations have not been tested; support is not guaranteed. These exact packages remain unvalidated on native Windows. Portable CI validates source boundaries, syntax, metadata and temporary fixtures, not UnrealScript compilation or gameplay.

@@ -2,25 +2,25 @@
   "images": [
     {
       "file": "docs/screenshots/01-replacement-groups-3840x2160.png",
-      "sha256": "ed0ff42e4bbaf5f63ff92143ee521b65f2e2b1dbc8c53a26821e6311568a3166",
+      "sha256": "9b41eb38af538bae0aaff8ef4d91fc9f0a6ffa1ce88308105a0b0d079d3acd0c",
       "width": 3840,
       "height": 2160
     },
     {
       "file": "docs/screenshots/02-vehicle-tuning-3840x2160.png",
-      "sha256": "4cc39bf09f2a06f2ca11b7d737f5826fc1cf3d8e83f376c28bce33fce862cade",
+      "sha256": "4b05d78d162bb08c869106c09d92284747fa27fe6ba497959b7aea633020ab8a",
       "width": 3840,
       "height": 2160
     },
     {
       "file": "docs/screenshots/03-weapons-3840x2160.png",
-      "sha256": "67e1eedfef63a1f6b4fca1479ce48e8f8fbeb1014623be0b8723621dce5b2266",
+      "sha256": "b468180110ac90ae4734f1271373ff88e3c9f5d4398b6d4618989e1e51d7674a",
       "width": 3840,
       "height": 2160
     },
     {
       "file": "docs/screenshots/04-mount-placement-3840x2160.png",
-      "sha256": "b53806a2fdd220cf12e5333e76b2632acd05ced335f80cd2c22eaef338125c6b",
+      "sha256": "7c7a5c26b7bf344c644bd6409a51a0a4763df639a374634df4832b2aa2ef6002",
       "width": 3840,
       "height": 2160
     }

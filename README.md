@@ -1,10 +1,10 @@
-# Unreal Motorworks v0.2.5-beta.4 — Standalone Public Beta
+# Unreal Motorworks v0.2.5-beta.5 — Standalone Public Beta
 
 By **Blue Natto (also known as CissiaLikesEggs on Gamebanana)**, for native OldUnreal Unreal Tournament 2004 **3374 or later**.
 
 Choose vehicle replacement groups and tune vehicles through one mutator. Duplicate vehicles into independently named variants, change health and weapons, adjust weapon-mount position/rotation/scale, and optionally randomize spawn health. Unreal Motorworks includes its maintained tuning and replacement backends in one ZIP. Neither original VehicleStuff nor WoRM2k4 needs to be downloaded or installed.
 
-Download the self-contained [v0.2.5-beta.4](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.2.5-beta.4).
+Download the self-contained [v0.2.5-beta.5](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.2.5-beta.5).
 
 ## Install
 
@@ -21,17 +21,24 @@ This ZIP contains three compiled packages, their cache registrations, and this R
 - **Synchronized in-order**: drag members in the bottom-left group list to change the spawn sequence, then Save. Independent random groups keep normal selection behavior.
 - **View / tune highlighted vehicle**: open the tuner at the selected entry.
 - **Duplicate as variant**: create a persistent independent profile. Name it, change settings, and save. Delete is available only for duplicates.
-- **Modification markers**: a green asterisk marks saved vehicle changes; a red asterisk marks changes made since opening the editor. Reverting to the opening values clears the red marker. Restore Defaults clears the marker immediately; use Save to commit the reset, or Cancel to discard it. The key sits below the Name field.
-- **Placement**: preview driver/passenger weapon-mount position (Unreal units), rotation (degrees), and uniform scale. Integrated stationary-turret weapons retain their native mounts.
+- **Weapons and custom projectiles**: each mount starts with Default: [original weapon], followed by None and a divider before other guns. None removes the mount's gun. Selecting a different gun clears the previous gun's projectile overrides. Edit opens that gun's current projectile/interval draft, starting from its native defaults for a newly selected gun. Restore Defaults resets the draft to the selected gun's projectiles and intervals. Done applies edits; Cancel or Escape discards them. Reopening Edit for the same gun preserves its custom settings. Placement auto-rotate starts enabled and can be switched off.
+- **Variants and previews**: duplicate names are numbered independently for each base vehicle. Motorpool previews use the selected profile’s saved weapon and placement settings. In-group first and Modified first start enabled.
+- **Modification markers**: a green asterisk marks vehicles modified previously; a red asterisk marks changes made since opening the editor. Reverting to the opening values clears the red marker. Restore Defaults clears the marker immediately; use Save to commit the reset, or Cancel to discard it. The key sits below the Name field.
+- **Placement**: Restore Default Values resets only the selected mount’s offsets, angles and scale, while preserving the preview camera. Preview driver/passenger weapon-mount position (Unreal units), rotation (degrees), and uniform scale. Integrated stationary-turret weapons retain their native mounts.
 - **In-group first**: bring current group members to the top without changing Search or Sort.
 - **Spawn health**: set minimum/maximum multipliers against configured health. A vehicle gets one roll when it spawns; live updates do not reroll it. Respawning stationary turrets get fresh tuning.
-- **Stationary turrets**: tune health/weapons in Vehicle Tuning & Weapons. They are placed map actors, not Motorpool factory slots.
+- **Tuning limits**: speed, friction and mass scale cap at 5; wheel size and jump height at 3; hover height at 2; fixed and random spawn health at 1,000,000 HP.
+- **Stationary turrets**: excluded from the tuning browser for this beta. Motorpool handles vehicle factory slots.
 
-Save commits changes; Cancel discards the current editor's unsaved changes. Motorpool has its own Save button. During a standalone match, `mutate VehicleSuite Config` opens the hub. Tuning saves apply immediately in standalone; Motorpool changes take effect on the next map.
+Save commits changes without closing the editor; Save & Close commits and closes it. Cancel discards the current editor's unsaved changes. Motorpool has its own Save button. During a standalone match, `mutate VehicleSuite Config` opens the hub. Tuning saves apply immediately in standalone; Motorpool changes take effect on the next map.
+
+Custom firing uses projectile behavior with the selected gun’s model and muzzle. It does not reproduce every gun’s special logic, targeting, or animations. If neither custom projectile is configured, the selected gun keeps normal firing. Custom projectile editing is available for supported Onslaught vehicle mounts; Assault vehicle weapon logic remains native.
 
 The rename keeps the internal `VehicleSuite`, `VehicleStuffFix`, and `WoRM2k4Fix` package/configuration names so existing presets and mutator references continue to work.
 
 ## Presets, updates, and removal
+
+Older profiles saved with the former “Custom” gun choice retain their projectiles and intervals, and migrate to custom firing with the stock gun as their starting selection. Those profiles did not record the gun selection they replaced; select a different gun again if desired.
 
 Existing `KangMods.ini` and `VehicleStuffFix.ini` remain authoritative and are never bundled or overwritten. Back them up before experimenting. Existing Motorworks replacement groups and named group presets remain available. Original-only WoRM2k4 presets are not automatically imported; their INI sections are preserved.
 
@@ -41,9 +48,9 @@ To uninstall, close UT2004 and remove only the six suite files listed above, or 
 
 Both extra-client-package lists default to empty. A fresh install does not request the author's custom vehicles or voice packs. Server admins using custom vehicles can list their actual package names under `[VehicleSuite.MutVehicleSuite]` in `VehicleSuite.ini` using `VehicleServerPackages[0]=YourPackage`, and further indices up to 31. `VoiceServerPackages[0]=YourVoicePackage` is an optional explicit override. Only configure content the server actually installs and needs. Standalone play skips this registration.
 
-This is a public beta. The current packages were built and checked on native Linux OldUnreal 3374. The interface was checked at 1920×1080, 2560×1440, and 3840×2160. The latest package has not been validated on native Windows.
+This is a public beta. The current packages were built and checked on native Linux OldUnreal 3374. Earlier layout checks covered 1920×1080, 2560×1440, and 3840×2160; the latest editor regression was checked at 2560×1440 and the current feature screenshots were captured at 3840×2160. The latest package has not been validated on native Windows.
 
-**Limited multiplayer testing:** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. Driving and firing were tested by me before this standalone update. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
+**Limited multiplayer testing:** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. Driving and firing were tested by me during beta development. Automated tests also exercised custom projectile firing and persistence. These checks do not establish exhaustive multiplayer gameplay coverage. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
 
 **Standalone beta update:** the original mod downloads are no longer prerequisites. A fresh configuration now resolves directly to stock vehicle mappings. Custom vehicles remain optional separate downloads; this ZIP includes the editor and runtime, not a custom vehicle collection.
 
@@ -52,8 +59,10 @@ Report your OldUnreal patch version, map, mutators, reproduction steps, and rele
 ## Credits
 
 - Unreal Motorworks coordination, maintained backend fixes, and new editor work: **Blue Natto (also known as CissiaLikesEggs on Gamebanana)**.
-- Original VehicleStuff: **[-will-]**, **Fraghouse Mod Team**; original testing: **Underscore**.
-- Original WoRM2k4 and Motorpool: **Kangus (Justin Follis)**; original thanks to WMP forum testers, Obscenery, and EvilDrWong.
+- Original **VehicleStuff**, by **[-will-]** and the **Fraghouse Mod Team**; original testing: **Underscore**. [Preserved VehicleStuff listing](https://pwc.muffincdn.com/ut2004/?dir=mutators) and [historical official contest listing](https://zx.net.nz/mirror/www.unrealtournament.com/ut2003/ct_phase3/ct_mutator.html).
+- Original **WoRM2k4 / Motorpool**, by **Kangus (Justin Follis)**; original thanks to WMP forum testers, Obscenery, and EvilDrWong. [Preserved original mod page](https://unrealarchive.org/unreal-tournament-2004/mutators/W/worm2k4-v2-5_7508a8b2.html).
+
+These links credit the original work; they are not installation requirements. Motorworks is self-contained and does not bundle either original mod.
 
 The Blue Natto avatar appears beside the centered author credit. The in-game Credits panel preserves the original-author attribution. If the legacy mod is already installed, its artwork may appear in Credits; this is optional and is not needed to use Motorworks.
 
