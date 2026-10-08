@@ -32,21 +32,27 @@ Native engine tests use private displays and copied configuration. Source-only
 GitHub CI does not run the game or certify these behaviors. Final candidate and
 package hashes, screenshots and independent review are kept in private evidence.
 
-## Conservative tuning guidelines
+## Tuning limits
 
-These are suggested starting ceilings for experimentation, not universal engine
-limits or enforced new clamps. Vehicle classes implement different physics.
-Increase values gradually and test driving, collisions and respawning.
+The editor, saved profiles, server update receiver and runtime now enforce these
+upper bounds. Fractions below the caps remain valid. Existing nonpositive stock
+sentinels keep their original behavior. Opening or installing this update does
+not rewrite saved configuration; oversized values are capped at runtime, and
+saving from the editor writes bounded profiles. Randomized spawn health is also
+capped at 1,000,000 HP after multiplier and rounding.
 
-| Setting | Suggested ceiling | Meaning in this implementation |
+| Setting | Maximum | Meaning in this implementation |
 | --- | --- | --- |
-| Speed | 3 | Scales propulsion/gear properties; not an exact top-speed multiplier. |
-| Friction | 3 | Absolute wheel friction scale where supported; not a multiplier of each class's default friction. |
-| Mass scale | 3 | Currently changes momentum response inversely; does not change Karma rigid-body mass. |
-| Wheel size | 1.5–2 | Wheel radius scale where supported. |
+| Speed | 5 | Scales propulsion/gear properties; not an exact top-speed multiplier. |
+| Friction | 5 | Absolute wheel friction scale where supported. |
+| Mass scale | 5 | Changes momentum response inversely; does not change Karma rigid-body mass. |
+| Wheel size | 3 | Wheel radius scale where supported. |
 | Jump height | 3 | Scales jump force where supported. |
 | Hover height | 2 | Scales hover distance where supported. |
-| Health | 5 times stock | A practical balance ceiling, not the editor's storage limit. |
+| Health | 1,000,000 HP | Applies to fixed and randomized spawn health. |
+
+These are mod limits, not promises of safe handling for every vehicle class.
+Increase values gradually and test driving, collisions and respawning.
 
 The placement editor already clamps offsets to ±500 Unreal units, angles to ±180
 degrees and scale to 0.1–5. Keeping offsets much closer to the original mount is

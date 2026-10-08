@@ -26,6 +26,7 @@ This ZIP contains three compiled packages, their cache registrations, and this R
 - **Placement**: Restore Default Values resets only the selected mount’s offsets, angles and scale, while preserving the preview camera. Original gun appearance leaves placement editable because transforms still affect the gun and muzzle. Preview driver/passenger weapon-mount position (Unreal units), rotation (degrees), and uniform scale. Integrated stationary-turret weapons retain their native mounts.
 - **In-group first**: bring current group members to the top without changing Search or Sort.
 - **Spawn health**: set minimum/maximum multipliers against configured health. A vehicle gets one roll when it spawns; live updates do not reroll it. Respawning stationary turrets get fresh tuning.
+- **Tuning limits**: speed, friction and mass scale cap at 5; wheel size and jump height at 3; hover height at 2; fixed and random spawn health at 1,000,000 HP.
 - **Stationary turrets**: tune health/weapons in Vehicle Tuning & Weapons. They are placed map actors, not Motorpool factory slots.
 
 Save commits changes without closing the editor; Save & Close commits and closes it. Cancel discards the current editor's unsaved changes. Motorpool has its own Save button. During a standalone match, `mutate VehicleSuite Config` opens the hub. Tuning saves apply immediately in standalone; Motorpool changes take effect on the next map.
