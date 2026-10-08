@@ -158,7 +158,9 @@ function Timer()
   Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[6]);Dialog=VSCustomWeaponGUI(Menus.TopPage());Dialog.CloseWindow(None);
   Check(Editor.ProfilesEqual(BeforeDialog,Editor.GetCurrentVP()),"unchanged Done preserves exact saved custom fields");
   Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[6]);Dialog=VSCustomWeaponGUI(Menus.TopPage());
-  UseGunDefaults(class'ONSAttackCraftGun');Dialog.CloseWindow(None);
+  UseGunDefaults(class'ONSAttackCraftGun');
+  Check(Dialog.P[moComboBox(Dialog.Controls[1]).GetIndex()].PClass==String(class'ONSAttackCraftGun'.default.ProjectileClass) && Dialog.P[moComboBox(Dialog.Controls[2]).GetIndex()].PClass==String(class'ONSAttackCraftGun'.default.AltFireProjectileClass),"selected gun defaults remain available after customization without cache entries");
+  Dialog.CloseWindow(None);
   Check(!Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles && !Editor.FiringModified(Editor.GetCurrentVP().DWeapons[0]),"matching selected gun defaults restores native firing without a checkbox");
   BeforeDialog=Editor.GetCurrentVP();
   Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[6]);Dialog=VSCustomWeaponGUI(Menus.TopPage());Dialog.CloseWindow(None);
