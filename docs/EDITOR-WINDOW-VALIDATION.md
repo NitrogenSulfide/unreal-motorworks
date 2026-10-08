@@ -12,6 +12,9 @@ The same native fixture exercises the ordinary replacement weapon appearance
 checkbox through its change handler, preserves the selected weapon class, checks
 warning visibility across tab switches, and removes a saved deleted variant from
 active and held replacement groups while preserving other members and order.
+Screenshot capture occurs on separate timer ticks from the following mutations,
+so rendered on/off states can be inspected independently of visibility flags.
+The custom warning renderer explicitly suppresses painting when hidden.
 A separate engine process verifies that the deletion journal survives restart,
 repairs an unconsumed stale reference, and preserves a newly recreated profile
 that reuses the same ID. Unsaved deletion does not emit a cleanup event.
