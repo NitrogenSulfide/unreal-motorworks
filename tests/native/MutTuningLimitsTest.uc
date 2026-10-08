@@ -66,7 +66,7 @@ function Timer()
  Menus=GUIController(PC.Player.GUIController);
  if(Stage==0)
  {
-  PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");PC.ClientOpenMenu("VehicleSuite.VehicleSuiteConfig");
+  PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");PC.ClientOpenMenu("UnrealMotorworks.VehicleSuiteConfig");
   Hub=VehicleSuiteConfig(Menus.TopPage());Hub.OpenVehicleTuning(None);Editor=VSGUI(Menus.TopPage());
   if(bVerifyReload)
   {

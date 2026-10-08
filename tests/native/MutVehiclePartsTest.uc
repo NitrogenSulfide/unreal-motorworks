@@ -63,7 +63,7 @@ function Timer()
   Check(Attachments(OriginalGun)==OriginalAttachments,"Defender duplicate preserves turret attachments");
   CheckUnchanged("DKoppIIVehicles.Abrams");CheckUnchanged("Onslaught.ONSHoverTank");CheckUnchanged("BWBP_VPC_Pro.Albatross");
   class'VehicleStuffFix'.static.SetVPElement(0,VP);class'VehicleStuffFix'.default.VPsLength=1;
-  PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");PC.ClientOpenMenu("VehicleSuite.VehicleSuiteConfig");Hub=VehicleSuiteConfig(Menus.TopPage());Hub.OpenMotorpool(None);Pool=WoRM_vCfgFix(Menus.TopPage());
+  PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");PC.ClientOpenMenu("UnrealMotorworks.VehicleSuiteConfig");Hub=VehicleSuiteConfig(Menus.TopPage());Hub.OpenMotorpool(None);Pool=WoRM_vCfgFix(Menus.TopPage());
   Pool.UpdatePreview("DKoppIIVehicles.Defender");BaseParts=Pool.PreviewPartCount;
   Check(BaseParts>0,"Defender base preview has decoration parts");Pool.UpdatePreview("DKoppIIVehicles.Defender#91");
   Check(Pool.PreviewPartCount==BaseParts,"Defender variant preview has same parts as base");

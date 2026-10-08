@@ -1,18 +1,19 @@
-# Unreal Motorworks v0.2.5-beta.5 — Standalone Public Beta
+# Unreal Motorworks v0.3.0-beta.1 — Standalone Public Beta
 
 By **Blue Natto (also known as CissiaLikesEggs on Gamebanana)**, for native OldUnreal Unreal Tournament 2004 **3374 or later**.
 
 Choose vehicle replacement groups and tune vehicles through one mutator. Duplicate vehicles into independently named variants, change health and weapons, adjust weapon-mount position/rotation/scale, and optionally randomize spawn health. Unreal Motorworks includes its maintained tuning and replacement backends in one ZIP. Neither original VehicleStuff nor WoRM2k4 needs to be downloaded or installed.
 
-Download the self-contained [v0.2.5-beta.5](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.2.5-beta.5).
+Download the self-contained [v0.3.0-beta.1](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.3.0-beta.1).
 
 ## Install
 
 1. Close UT2004. Use a native OldUnreal 3374+ installation; Steam/Proton installations have not been tested; support is not guaranteed.
-2. Back up any existing `VehicleSuite.u`, `VehicleStuffFix.u`, `WoRM2k4Fix.u` and their `.ucl` files. Extract this ZIP into the UT2004 game root so the six files under `System/` land in your game's `System/` directory.
-3. Add **Unreal Motorworks: Motorpool + Tuning** to your mutators, then open its configuration. Enable only the suite; do not also enable either Fix backend or the original VehicleStuff/Motorpool mutator.
+2. **Fresh install:** extract `System/UnrealMotorworks.u` and `System/UnrealMotorworks.ucl` from the ZIP into your game's `System/` directory. The ZIP contains the complete mod; neither original mutator is required.
+3. **Upgrading an earlier Motorworks beta:** back up your settings and migrate them before removing the old six Motorworks package files. Follow [the upgrade instructions](https://github.com/NitrogenSulfide/unreal-motorworks/blob/main/docs/UPGRADING.md); the ZIP includes an optional Python 3 migration helper that previews its changes and preserves exact backups. If you already use `UnrealMotorworks.ini` and the two unified package files, replace only those two package files.
+4. Add **Unreal Motorworks: Motorpool + Tuning** to your mutators, then open its configuration. Enable only Motorworks. Old `VehicleSuite`, `VehicleStuffFix`, and `WoRM2k4Fix` packages must not remain beside the unified build.
 
-This ZIP contains three compiled packages, their cache registrations, and this README. It includes no custom vehicles, voice packs, personal presets, or game binaries. Only the suite is registered in the mutator browser; the two backend `.ucl` files are intentionally empty.
+The ZIP contains one compiled package, one mutator registration, this README, and the optional `upgrade-settings.py` helper. It includes no custom vehicles, voice packs, personal presets, or game binaries. Python is only needed for the optional upgrade helper; fresh installs need no helper or other mod download.
 
 ## Use
 
@@ -34,21 +35,21 @@ Save commits changes without closing the editor; Save & Close commits and closes
 
 Custom firing uses projectile behavior with the selected gun’s model and muzzle. It does not reproduce every gun’s special logic, targeting, or animations. If neither custom projectile is configured, the selected gun keeps normal firing. Custom projectile editing is available for supported Onslaught vehicle mounts; Assault vehicle weapon logic remains native.
 
-The rename keeps the internal `VehicleSuite`, `VehicleStuffFix`, and `WoRM2k4Fix` package/configuration names so existing presets and mutator references continue to work.
+This version consolidates all maintained classes into `UnrealMotorworks.u`. Settings now live in `UnrealMotorworks.ini`. Package identity has changed: upgrade both server and client together, and migrate earlier Motorworks settings before removing the old packages. The `mutate VehicleSuite Config` command remains available for compatibility.
 
 ## Presets, updates, and removal
 
 Older profiles saved with the former “Custom” gun choice retain their projectiles and intervals, and migrate to custom firing with the stock gun as their starting selection. Those profiles did not record the gun selection they replaced; select a different gun again if desired.
 
-Existing `KangMods.ini` and `VehicleStuffFix.ini` remain authoritative and are never bundled or overwritten. Back them up before experimenting. Existing Motorworks replacement groups and named group presets remain available. Original-only WoRM2k4 presets are not automatically imported; their INI sections are preserved.
+`UnrealMotorworks.ini` is now authoritative. The upgrade helper copies only the four Motorworks sections from `VehicleStuffFix.ini`, `KangMods.ini`, and `VehicleSuite.ini`; it keeps those old files intact and leaves unrelated presets/settings alone. Existing unified sections take precedence, so rerunning migration does not replace your newer settings. Original-only WoRM2k4 presets are not automatically imported.
 
-To uninstall, close UT2004 and remove only the six suite files listed above, or restore the versions/cache registrations backed up before installation. Keep `WoRM2k4.u` and shared `KangMods.ini` if other WoRM2k4 mutators use them. Keep tuning INIs to retain presets. For a fresh start, back up/remove `VehicleStuffFix.ini` and `VehicleSuite.ini`, and back up/reset only the Motorpool sections in shared `KangMods.ini`; its unrelated weapon settings should be preserved.
+To uninstall, close UT2004 and remove only `UnrealMotorworks.u` and `UnrealMotorworks.ucl`. Keep the INI to retain your settings. For a fresh start, back up and remove `UnrealMotorworks.ini`. Original `VehicleStuff.u`, `WoRM2k4.u`, and shared `KangMods.ini` remain separate; preserve them if other installed mods use them. Do not mix this build with earlier Motorworks packages.
 
 ## Servers and beta scope
 
-Both extra-client-package lists default to empty. A fresh install does not request the author's custom vehicles or voice packs. Server admins using custom vehicles can list their actual package names under `[VehicleSuite.MutVehicleSuite]` in `VehicleSuite.ini` using `VehicleServerPackages[0]=YourPackage`, and further indices up to 31. `VoiceServerPackages[0]=YourVoicePackage` is an optional explicit override. Only configure content the server actually installs and needs. Standalone play skips this registration.
+Both extra-client-package lists default to empty. A fresh install does not request the author's custom vehicles or voice packs. Server admins using custom vehicles can list their actual package names under `[UnrealMotorworks.MutVehicleSuite]` in `UnrealMotorworks.ini` using `VehicleServerPackages[0]=YourPackage`, and further indices up to 31. `VoiceServerPackages[0]=YourVoicePackage` is an optional explicit override. Only configure content the server actually installs and needs. Standalone play skips this registration.
 
-This is a public beta. The current packages were built and checked on native Linux OldUnreal 3374. Earlier layout checks covered 1920×1080, 2560×1440, and 3840×2160; the latest editor regression was checked at 2560×1440 and the current feature screenshots were captured at 3840×2160. The latest package has not been validated on native Windows.
+This is a public beta. The current packages were built and checked on native Linux OldUnreal 3374. Earlier layout checks covered 1920×1080, 2560×1440, and 3840×2160; the consolidated package passed current editor regressions at 1920×1080, 2560×1440, and 3840×2160. Current feature screenshots were captured at 3840×2160. The latest package has not been validated on native Windows.
 
 **Limited multiplayer testing:** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. Driving and firing were tested by me during beta development. Automated tests also exercised custom projectile firing and persistence. These checks do not establish exhaustive multiplayer gameplay coverage. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
 
@@ -77,6 +78,6 @@ Original in-game 4K captures using stock vehicles and an example tuning variant.
 
 ## Repository and validation
 
-This separate repository contains the original coordination-layer source under `src/VehicleSuite`, public documentation, approved feature screenshots, and portable validation tools. The maintained backend forks are distributed as compiled packages in Releases; their source and private build inputs are not included in this repository. This is not a complete reproducible source distribution. No blanket open-source licence is asserted for the upstream-derived backends; see [provenance and credits](docs/PROVENANCE.md).
+This separate repository contains the original coordination-layer source under `src/UnrealMotorworks`, public documentation, approved feature screenshots, and portable validation tools. The maintained backend forks are assembled into the single compiled package in Releases; their source and private build inputs are not included in this repository. This is not a complete reproducible source distribution. No blanket open-source licence is asserted for the upstream-derived backends; see [provenance and credits](docs/PROVENANCE.md).
 
 [Validation](docs/VALIDATION.md) separates native tests, user testing, and portable CI. [Review process](docs/REVIEW_PROCESS.md) describes the release gates. GitHub Actions checks source boundaries, syntax, release metadata, temporary fixtures, and credentials; it does not build or launch UT2004 and does not publish releases automatically.

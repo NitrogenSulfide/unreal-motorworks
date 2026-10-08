@@ -112,7 +112,7 @@ def check(root, scanner):
                    UT2004_CONFIG_DIR=str(stage / 'NO_LIVE_CONFIG'),
                    UT2004_UCC=str(stage / 'NO_COMPILER'))
         # An explicit list avoids accidentally discovering engine/visual launchers.
-        suites = [('tools/ci', 'test_check.py'), ('tests', 'test_public_metadata.py')]
+        suites = [('tools/ci', 'test_check.py'), ('tests', 'test_public_metadata.py'), ('tests', 'test_migrate_settings.py')]
         for directory, pattern in suites:
             if not (stage / directory / pattern).is_file():
                 raise ValueError(f'Required fixture suite is missing: {directory}/{pattern}')

@@ -24,7 +24,7 @@ function Timer()
  if(PC==None||PC.Player==None)return;Menus=GUIController(PC.Player.GUIController);
  if(Stage==0)
  {
-  PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");PC.ClientOpenMenu("VehicleSuite.VehicleSuiteConfig");Hub=VehicleSuiteConfig(Menus.TopPage());Hub.OpenMotorpool(None);Pool=WoRM_vCfgFix(Menus.TopPage());
+  PC.ClientOpenMenu("GUI2K4.UT2K4GenericMessageBox");PC.ClientOpenMenu("UnrealMotorworks.VehicleSuiteConfig");Hub=VehicleSuiteConfig(Menus.TopPage());Hub.OpenMotorpool(None);Pool=WoRM_vCfgFix(Menus.TopPage());
   Pool.CurrentSlot=3;Pool.HighlightedVehicleClasses[3]="Onslaught.ONSHoverTank";Pool.UpdateSelectedDetails();Pool.OpenHighlightedTuning(None);Editor=VSGUI(Menus.TopPage());StackSnapshot=Menus.GetPropertyText("MenuStack");
   Pane=Editor.MainTab;Pane.bSpinPreview=false;
  }
@@ -36,7 +36,7 @@ function Timer()
  else if(Stage==3)
  {
   // Recover only to continue diagnosis if the baseline pulled the parent forward.
-  if(Menus.TopPage()!=Editor){PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");StackSnapshot=Menus.GetPropertyText("MenuStack");}
+  if(Menus.TopPage()!=Editor){PC.ClientOpenMenu("UnrealMotorworks.VSIGGUI");Editor=VSGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");StackSnapshot=Menus.GetPropertyText("MenuStack");}
   GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.MountTab,true);Pane=Editor.MountTab;Pane.bSpinPreview=false;
  }
  else if(Stage==4){OldPan=Pane.PreviewPanY;Cue("RPAN",Pane);}
@@ -46,7 +46,7 @@ function Timer()
  }
  else if(Stage==6)
  {
-  if(Menus.TopPage()!=Editor){PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");}
+  if(Menus.TopPage()!=Editor){PC.ClientOpenMenu("UnrealMotorworks.VSIGGUI");Editor=VSGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");}
   GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.WeapTab,true);Editor.SetWeaponClass("Onslaught.ONSRVWebLauncher",0);Editor.WeapTab.SetCBPosition("Onslaught.ONSRVWebLauncher",0);
   Check(Editor.WeapTab.Controls[18].MenuState!=MSAT_Disabled,"normal replacement enables original appearance checkbox");
   moCheckBox(Editor.WeapTab.Controls[18]).SetComponentValue("True");

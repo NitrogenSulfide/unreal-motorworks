@@ -1,7 +1,7 @@
-class MutVehicleSuite extends Mutator config(VehicleSuite);
+class MutVehicleSuite extends Mutator config(UnrealMotorworks);
 
-const WoRMMutatorClassName = "WoRM2k4Fix.MutWoRM_vFix";
-const VehicleStuffMutatorClassName = "VehicleStuffFix.VehicleStuffFix";
+const WoRMMutatorClassName = "UnrealMotorworks.MutWoRM_vFix";
+const VehicleStuffMutatorClassName = "UnrealMotorworks.VehicleStuffFix";
 
 var bool bBackendsReady;
 var config string VehicleServerPackages[32];
@@ -123,7 +123,7 @@ function Mutate(string MutateString, PlayerController Sender)
 		((Level.NetMode == NM_Standalone) ||
 		 ((Sender.PlayerReplicationInfo != None) && Sender.PlayerReplicationInfo.bAdmin)))
 	{
-		Sender.ClientOpenMenu("VehicleSuite.VehicleSuiteConfig");
+		Sender.ClientOpenMenu("UnrealMotorworks.VehicleSuiteConfig");
 	}
 
 	Super.Mutate(MutateString, Sender);
@@ -134,7 +134,7 @@ defaultproperties
 	// General-purpose defaults: extra client packages are opt-in server settings.
 	// Keep both arrays empty so a new installation has no custom-content dependency.
 	bAddToServerPackages=True
-	ConfigMenuClassName="VehicleSuite.VehicleSuiteConfig"
+	ConfigMenuClassName="UnrealMotorworks.VehicleSuiteConfig"
 	GroupName="VehicleArena"
 	IconMaterialName="MutatorArt.nosym"
 	FriendlyName="Unreal Motorworks: Motorpool + Tuning"

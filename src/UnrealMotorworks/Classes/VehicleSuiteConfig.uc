@@ -5,7 +5,7 @@ function bool HasLiveVehicleStuff()
 	local Mutator M;
 	local class<Mutator> VehicleStuffClass;
 
-	VehicleStuffClass = class<Mutator>(DynamicLoadObject("VehicleStuffFix.VehicleStuffFix", class'Class', true));
+	VehicleStuffClass = class<Mutator>(DynamicLoadObject("UnrealMotorworks.VehicleStuffFix", class'Class', true));
 	if ((VehicleStuffClass == None) || (PlayerOwner() == None))
 		return false;
 
@@ -18,7 +18,7 @@ function bool HasLiveVehicleStuff()
 
 function bool OpenMotorpool(GUIComponent Sender)
 {
-	Controller.OpenMenu("WoRM2k4Fix.WoRM_vCfgFix");
+	Controller.OpenMenu("UnrealMotorworks.WoRM_vCfgFix");
 	return true;
 }
 
@@ -27,13 +27,13 @@ function bool OpenVehicleTuning(GUIComponent Sender)
 	if (HasLiveVehicleStuff())
 		PlayerOwner().ConsoleCommand("mutate VehicleStuffFix Config");
 	else
-		Controller.OpenMenu("VehicleStuffFix.VSGUI");
+		Controller.OpenMenu("UnrealMotorworks.VSGUI");
 	return true;
 }
 
 function bool OpenCredits(GUIComponent Sender)
 {
-	Controller.OpenMenu("VehicleStuffFix.VSLegacyCredits");
+	Controller.OpenMenu("UnrealMotorworks.VSLegacyCredits");
 	return true;
 }
 
@@ -83,7 +83,7 @@ defaultproperties
 		bAcceptsInput=False
 		bNeverFocus=True
 	End Object
-	Controls(0)=GUIImage'VehicleSuite.VehicleSuiteConfig.HubOpaqueBackground'
+	Controls(0)=GUIImage'UnrealMotorworks.VehicleSuiteConfig.HubOpaqueBackground'
 
 	Begin Object Class=GUIButton Name=HubBackground
 		StyleName="SquareBar"
@@ -94,7 +94,7 @@ defaultproperties
 		bAcceptsInput=False
 		bNeverFocus=True
 	End Object
-	Controls(1)=GUIButton'VehicleSuite.VehicleSuiteConfig.HubBackground'
+	Controls(1)=GUIButton'UnrealMotorworks.VehicleSuiteConfig.HubBackground'
 
 	Begin Object Class=VSScaledLabel Name=HubTitle
 		Caption="UNREAL MOTORWORKS"
@@ -106,7 +106,7 @@ defaultproperties
 		WinWidth=0.480000
 		WinHeight=0.060000
 	End Object
-	Controls(2)=VSScaledLabel'VehicleSuite.VehicleSuiteConfig.HubTitle'
+	Controls(2)=VSScaledLabel'UnrealMotorworks.VehicleSuiteConfig.HubTitle'
 
 	Begin Object Class=VSScaledButton Name=CreditsButton
 		Caption="Credits"
@@ -119,7 +119,7 @@ defaultproperties
 		bNeverFocus=True
 		OnClick=VehicleSuiteConfig.OpenCredits
 	End Object
-	Controls(9)=VSScaledButton'VehicleSuite.VehicleSuiteConfig.CreditsButton'
+	Controls(9)=VSScaledButton'UnrealMotorworks.VehicleSuiteConfig.CreditsButton'
 
 	Begin Object Class=VSScaledButton Name=MotorpoolButton
 		Caption="Motorpool Remastered"
@@ -131,7 +131,7 @@ defaultproperties
 		bNeverFocus=True
 		OnClick=VehicleSuiteConfig.OpenMotorpool
 	End Object
-	Controls(3)=VSScaledButton'VehicleSuite.VehicleSuiteConfig.MotorpoolButton'
+	Controls(3)=VSScaledButton'UnrealMotorworks.VehicleSuiteConfig.MotorpoolButton'
 
 	Begin Object Class=GUILabel Name=MotorpoolDescription
 		Caption="Replacement groups choose the vehicle before its factory spawns it."
@@ -143,7 +143,7 @@ defaultproperties
 		WinWidth=0.540000
 		WinHeight=0.035000
 	End Object
-	Controls(4)=GUILabel'VehicleSuite.VehicleSuiteConfig.MotorpoolDescription'
+	Controls(4)=GUILabel'UnrealMotorworks.VehicleSuiteConfig.MotorpoolDescription'
 
 	Begin Object Class=VSScaledButton Name=VehicleTuningButton
 		Caption="Vehicle Tuning & Weapons"
@@ -155,7 +155,7 @@ defaultproperties
 		bNeverFocus=True
 		OnClick=VehicleSuiteConfig.OpenVehicleTuning
 	End Object
-	Controls(5)=VSScaledButton'VehicleSuite.VehicleSuiteConfig.VehicleTuningButton'
+	Controls(5)=VSScaledButton'UnrealMotorworks.VehicleSuiteConfig.VehicleTuningButton'
 
 	Begin Object Class=GUILabel Name=VehicleTuningDescription
 		Caption="VehicleStuff tunes the actual vehicle instance after it appears."
@@ -167,7 +167,7 @@ defaultproperties
 		WinWidth=0.540000
 		WinHeight=0.035000
 	End Object
-	Controls(6)=GUILabel'VehicleSuite.VehicleSuiteConfig.VehicleTuningDescription'
+	Controls(6)=GUILabel'UnrealMotorworks.VehicleSuiteConfig.VehicleTuningDescription'
 
 	Begin Object Class=GUILabel Name=NextMapNotice
 		Caption="Motorpool changes made during a match take effect when the next map starts."
@@ -179,7 +179,7 @@ defaultproperties
 		WinWidth=0.560000
 		WinHeight=0.040000
 	End Object
-	Controls(7)=GUILabel'VehicleSuite.VehicleSuiteConfig.NextMapNotice'
+	Controls(7)=GUILabel'UnrealMotorworks.VehicleSuiteConfig.NextMapNotice'
 
 	Begin Object Class=VSScaledButton Name=CloseButton
 		Caption="Close"
@@ -190,7 +190,7 @@ defaultproperties
 		bNeverFocus=True
 		OnClick=VehicleSuiteConfig.CloseHub
 	End Object
-	Controls(8)=VSScaledButton'VehicleSuite.VehicleSuiteConfig.CloseButton'
+	Controls(8)=VSScaledButton'UnrealMotorworks.VehicleSuiteConfig.CloseButton'
 
 	OnPreDraw=VehicleSuiteConfig.LayoutHub
 	bAllowedAsLast=True
