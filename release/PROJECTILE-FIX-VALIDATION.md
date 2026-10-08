@@ -20,8 +20,8 @@ maintainer's private native build, separately from portable CI. An authenticated
 private 2560×1440 Xvfb display exercises actual mouse clicks on Custom, Done, and
 Save & Close. It checks reopening, Cancel, saved/unsaved markers, both firing
 intervals, passenger slots, and saved choices absent from the weapon cache. A
-fresh game process reads the saved INI, spawns the exact stock Goliath variant
-through a Torlan factory, and invokes the weapon's firing path to verify the
+fresh game process reads the saved INI, spawns the exact stock vehicle variant
+through a map vehicle factory, and invokes the weapon's firing path to verify the
 selected driver primary, alternate, and passenger projectile actors. This is
 limited automated native Linux testing; it does not establish Windows, multiplayer
 custom-projectile behavior, graphics-driver parity, or Steam/Proton support.

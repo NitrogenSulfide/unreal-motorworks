@@ -2,7 +2,7 @@
 
 Unpublished local fix; repository remains private and beta publication is on hold.
 
-The previous build reproduced Driver Weapon #2 becoming active on a Goliath,
+The previous build reproduced Driver Weapon #2 becoming active on a vehicle
 which has only one driver mount, after both Vehicle → Weapons and Placement →
 Weapons transitions. A physical click could open the absent mount's dropdown.
 The native combo's invalidation callback focuses its edit child without checking
