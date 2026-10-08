@@ -23,7 +23,7 @@ moves the appearance control to each Weapons row; see EDITOR-USABILITY-VALIDATIO
 The native regression fixture extends the custom-projectile saving test with
 actual Advanced, Done and appearance-checkbox clicks, both-direction health
 synchronization, save/reopen and fresh-process persistence, and primary,
-alternate and passenger firing through a Torlan factory variant. It also checks
+alternate and passenger firing through a map vehicle factory variant. It also checks
 original meshes, muzzle metadata and passenger aiming limits. Final evidence,
 package identities and independent review remain in the private candidate record.
 Portable GitHub CI does not compile or run these engine fixtures.
