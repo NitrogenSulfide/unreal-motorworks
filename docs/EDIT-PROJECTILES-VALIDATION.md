@@ -11,7 +11,7 @@ Existing active custom profiles remain supported; inactive historical overrides
 are retained in saved profiles but do not override defaults when opening Edit.
 
 Use original gun appearance moves beneath each weapon selector. Its native text
-width is measured so the checkbox sits beside the caption at different resolutions.
+width is measured and a minimum16-pixel gap is included before the checkbox, so it sits beyond the caption at different resolutions.
 Placement auto-rotate starts enabled, with the visible checkbox synchronized to
 the rendering state; users can turn it off during the editing session.
 
