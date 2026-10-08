@@ -1,8 +1,8 @@
-# Upgrade to v0.3.0-beta.1
+# Upgrade to v0.3.0-beta.2
 
 Fresh installations need only `System/UnrealMotorworks.u` and `System/UnrealMotorworks.ucl` from the ZIP. No original VehicleStuff or WoRM2k4 download is needed. Existing custom vehicle packs remain optional separate content.
 
-This release changes the runtime package identity and settings filename. Close the native OldUnreal game before changing files. Server and client must both use the same Motorworks version; do not mix an earlier beta with this one. Steam/Proton installations are untested and support is not guaranteed. Native Windows has not been validated for this release.
+The earlier v0.3.0-beta.1 release changed the runtime package identity and settings filename. Beta.2 keeps that unified package and settings layout. Close the native OldUnreal game before changing files. Server and client must both use the same Motorworks version; do not mix an earlier beta with this one. Steam/Proton installations are untested and support is not guaranteed. Native Windows has not been validated for this release.
 
 ## Already using the unified package
 

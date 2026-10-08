@@ -1,11 +1,11 @@
 {
-  "version": "0.3.0-beta.1",
-  "archive": "UnrealMotorworks-v0.3.0-beta.1.zip",
-  "archive_sha256": "a8e8cba07fbe480224d878cdaf84447d0074a12a2f2902d127aaf3d77f558610",
+  "version": "0.3.0-beta.2",
+  "archive": "UnrealMotorworks-v0.3.0-beta.2.zip",
+  "archive_sha256": "13b8c6a33940c69bfe2a35bf7836e7c7bb7ad89154eba17116b5bec6a035f271",
   "files": {
-    "README.md": "29a3b84cc773e0e2df945a2f615c500d18aecfc038fe0afd5b636ed9ce652b70",
-    "upgrade-settings.py": "256f789d775bd6fa7449aefd81cdc68aaf033d8681f55826864231a4df060337",
-    "System/UnrealMotorworks.u": "0c54411ad44833649ea46c33d346d42533950d619813b95cac19749f0f4d6c24",
-    "System/UnrealMotorworks.ucl": "8d427595f6f808b3959d33daee9961cd44b8502f004fbe681d20db3cc809e77e"
+    "README.md": "5aaadbaaf89eb907751d4cf04de49595eefe15b3e9fbdc6e1ff5aefcecc3c8b5",
+    "System/UnrealMotorworks.u": "8290e29d3382d6f946c0b52229f8029737ea2d054347bbcaa0ba417b9e4b082b",
+    "System/UnrealMotorworks.ucl": "8d427595f6f808b3959d33daee9961cd44b8502f004fbe681d20db3cc809e77e",
+    "upgrade-settings.py": "256f789d775bd6fa7449aefd81cdc68aaf033d8681f55826864231a4df060337"
   }
 }

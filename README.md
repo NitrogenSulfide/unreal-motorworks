@@ -1,10 +1,10 @@
-# Unreal Motorworks v0.3.0-beta.1 — Standalone Public Beta
+# Unreal Motorworks v0.3.0-beta.2 — Standalone Public Beta
 
 By **Blue Natto (also known as CissiaLikesEggs on Gamebanana)**, for native OldUnreal Unreal Tournament 2004 **3374 or later**.
 
 Choose vehicle replacement groups and tune vehicles through one mutator. Duplicate vehicles into independently named variants, change health and weapons, adjust weapon-mount position/rotation/scale, and optionally randomize spawn health. Unreal Motorworks includes its maintained tuning and replacement backends in one ZIP. Neither original VehicleStuff nor WoRM2k4 needs to be downloaded or installed.
 
-Download the self-contained [v0.3.0-beta.1](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.3.0-beta.1).
+Download the self-contained [v0.3.0-beta.2](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.3.0-beta.2).
 
 ## Install
 
@@ -49,9 +49,9 @@ To uninstall, close UT2004 and remove only `UnrealMotorworks.u` and `UnrealMotor
 
 Both extra-client-package lists default to empty. A fresh install does not request the author's custom vehicles or voice packs. Server admins using custom vehicles can list their actual package names under `[UnrealMotorworks.MutVehicleSuite]` in `UnrealMotorworks.ini` using `VehicleServerPackages[0]=YourPackage`, and further indices up to 31. `VoiceServerPackages[0]=YourVoicePackage` is an optional explicit override. Only configure content the server actually installs and needs. Standalone play skips this registration.
 
-This is a public beta. The current packages were built and checked on native Linux OldUnreal 3374. Earlier layout checks covered 1920×1080, 2560×1440, and 3840×2160; the consolidated package passed current editor regressions at 1920×1080, 2560×1440, and 3840×2160. Current feature screenshots were captured at 3840×2160. The latest package has not been validated on native Windows.
+This is a public beta, built on native Linux OldUnreal 3374. Beta.2 fixes optional DkoppII turret/body attachments in editor previews; gameplay behavior is unchanged. This exact build passed 100 editor/save/reload checks at 2560×1440, 49 preview checks across 16 tank variants, and 60 standalone gameplay checks covering vehicle entry, driving, firing, and exit. The preview fix was also tested by me in the installed game. Beta.1 passed editor regressions at 1920×1080, 2560×1440, and 3840×2160; those resolution checks were not all repeated for beta.2. Feature screenshots below are the earlier 4K stock-feature captures. Native Windows remains unvalidated.
 
-**Limited multiplayer testing:** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. Driving and firing were tested by me during beta development. Automated tests also exercised custom projectile firing and persistence. These checks do not establish exhaustive multiplayer gameplay coverage. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
+**Limited multiplayer testing (beta.1):** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. Driving and firing were tested by me during beta development. Automated tests also exercised custom projectile firing and persistence. The dedicated server/client checks were not repeated for beta.2; runtime gameplay code is unchanged. These checks do not establish exhaustive multiplayer gameplay coverage. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
 
 **Standalone beta update:** the original mod downloads are no longer prerequisites. A fresh configuration now resolves directly to stock vehicle mappings. Custom vehicles remain optional separate downloads; this ZIP includes the editor and runtime, not a custom vehicle collection.
 
