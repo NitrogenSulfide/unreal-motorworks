@@ -1,7 +1,7 @@
 class MutWeaponWorkflowTest extends MutCustomProjectileTest;
 var VehicleStuffFix.VehicleProperties BeforeDialog;
 var string WorkflowKey;
-var int BeforeMarker;
+var int BeforeMarker, BeforeMountYaw;
 var ONSManualGunPawn WorkflowNode;
 var VehicleStuffFix WorkflowTuner;
 var VehicleStuffFix.VehicleProperties NodeVP;
@@ -24,6 +24,13 @@ function CueButton(GUIComponent Target)
  F=Spawn(class'FileLog');F.OpenLog("CustomProjectileInput-Workflow" $ Stage,,true);
  F.Logf("CLICK" @ int(Target.ActualLeft()+Target.ActualWidth()*0.5) @ int(Target.ActualTop()+Target.ActualHeight()*0.5) @ int(Target.Controller.MouseX) @ int(Target.Controller.MouseY));
  F.CloseLog();F.Destroy();
+}
+function UseGunDefaults(class<ONSWeapon> Gun)
+{
+ local string Primary,Alternate;
+ if(Gun.default.ProjectileClass!=None)Primary=String(Gun.default.ProjectileClass);
+ if(Gun.default.AltFireProjectileClass!=None)Alternate=String(Gun.default.AltFireProjectileClass);
+ SetFields(Primary,Alternate,String(Gun.default.FireInterval),String(Gun.default.AltFireInterval));
 }
 function CheckSettings(VehicleStuffFix.VehicleProperties VP,string Prefix)
 {
@@ -88,6 +95,8 @@ function Timer()
   Editor.SetWeaponClass("Onslaught.ONSAttackCraftGun",0);Editor.UpdateDisplay();
   BeforeDialog=Editor.GetCurrentVP();BeforeMarker=Editor.VehicleMarkerState(Editor.CurrentIndex);
   WorkflowKey=class'VehicleStuffFix'.static.ProfileKey(BeforeDialog);
+  Check(Editor.WeapTab.Controls.Length==24,"weapons rows contain no custom projectile checkboxes");
+  Check(Editor.MountTab.bSpinPreview && moCheckBox(Editor.MountTab.Controls[20]).IsChecked(),"Placement auto-rotate starts on with synchronized checkbox");
   Check(Editor.WeapTab.P[1].PClass!="Custom","weapon dropdown contains guns instead of a Custom mode");
   return;
  }
@@ -114,12 +123,12 @@ function Timer()
  {
   Check(Menus.TopPage()==Editor,"actual Cancel returns to tuning page");
   Check(Editor.ProfilesEqual(BeforeDialog,Editor.GetCurrentVP()),"Cancel preserves whole profile including prior unsaved work");
-  CueButton(moCheckBox(Editor.WeapTab.Controls[24]).MyCheckBox);
+  CueButton(Editor.WeapTab.Controls[6]);
  }
  else if(Stage==6)
  {
-  Check(Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles && Editor.GetCurrentVP().DWeapons[0].WeaponClass=="Onslaught.ONSAttackCraftGun","actual custom toggle keeps selected gun");
-  Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[6]);Dialog=VSCustomWeaponGUI(Menus.TopPage());
+  Dialog=VSCustomWeaponGUI(Menus.TopPage());
+  Check(Dialog!=None && Editor.ProfilesEqual(BeforeDialog,Editor.GetCurrentVP()),"actual Edit opens without enabling overrides or replacing the gun");
   SetFields("XWeapons.FlakShell","XWeapons.RocketProj","0.6","0.9");
  }
  else if(Stage==7){PC.ConsoleCommand("shot");}
@@ -133,14 +142,28 @@ function Timer()
   Check(Editor.MainTab.PreviewWeapons[0].Mesh==class'ONSHoverTankCannon'.default.Mesh,"original appearance overrides only the model");
   Editor.SetOriginalGunAppearance(0,false);
   Check(Editor.MainTab.PreviewWeapons[0].Mesh==class'ONSAttackCraftGun'.default.Mesh,"disabling original appearance restores selected gun model");
+  GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.MountTab,true);
+  BeforeMountYaw=Editor.MountTab.PreviewYaw;
  }
  else if(Stage==10)
  {
-  PC.ConsoleCommand("shot");
+  Check(Editor.MountTab.PreviewYaw!=BeforeMountYaw,"Placement auto-rotate visibly advances the preview yaw");
+  PC.ConsoleCommand("shot");CueButton(moCheckBox(Editor.MountTab.Controls[20]).MyCheckBox);
  }
  else if(Stage==11)
  {
+  Check(!Editor.MountTab.bSpinPreview && !moCheckBox(Editor.MountTab.Controls[20]).IsChecked(),"physical Placement checkbox turns auto-rotate off");
   GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.WeapTab,true);
+  BeforeDialog=Editor.GetCurrentVP();
+  Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[6]);Dialog=VSCustomWeaponGUI(Menus.TopPage());Dialog.CloseWindow(None);
+  Check(Editor.ProfilesEqual(BeforeDialog,Editor.GetCurrentVP()),"unchanged Done preserves exact saved custom fields");
+  Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[6]);Dialog=VSCustomWeaponGUI(Menus.TopPage());
+  UseGunDefaults(class'ONSAttackCraftGun');Dialog.CloseWindow(None);
+  Check(!Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles && !Editor.FiringModified(Editor.GetCurrentVP().DWeapons[0]),"matching selected gun defaults restores native firing without a checkbox");
+  BeforeDialog=Editor.GetCurrentVP();
+  Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[6]);Dialog=VSCustomWeaponGUI(Menus.TopPage());Dialog.CloseWindow(None);
+  Check(Editor.ProfilesEqual(BeforeDialog,Editor.GetCurrentVP()),"unchanged Done on native defaults does not create an override");
+  Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[6]);Dialog=VSCustomWeaponGUI(Menus.TopPage());SetFields("XWeapons.FlakShell","XWeapons.RocketProj","0.6","0.9");Dialog.CloseWindow(None);
   Editor.SetCustomProjectilesEnabled(0,false);
   Check(!Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles && Editor.GetCurrentVP().DWeapons[0].Mode[0]=="XWeapons.FlakShell","disabling custom firing retains dormant projectile choices");
   Editor.SetCustomProjectilesEnabled(0,true);

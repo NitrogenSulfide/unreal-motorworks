@@ -162,8 +162,7 @@ function Timer()
     }
     else if (Stage == 1)
     {
-        moCheckBox(Editor.WeapTab.Controls[24]).SetComponentValue("True",true);
-        Editor.WeapTab.CustomProjectilesChanged(Editor.WeapTab.Controls[24]);
+        Editor.SetCustomProjectilesEnabled(0,true);
         Check(Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles && Editor.GetCurrentVP().DWeapons[0].WeaponClass=="Onslaught.ONSHoverTankCannon", "custom projectile toggle preserves selected gun");
         Editor.SetWeaponClass("Onslaught.ONSHoverTankCannon", 0); Editor.UpdateDisplay();
         Cue(Editor.WeapTab.Controls[6]);
