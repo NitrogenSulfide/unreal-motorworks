@@ -82,7 +82,7 @@ function Timer()
     }
     else if(Stage==2)
     {
-        Check(Editor.MountTab.Controls[24].bVisible,"amber original appearance note is visible");
+        Check(Editor.MountTab.Controls[24].bVisible,"original appearance warning is visible");
         Check(Editor.MountTab.Controls[12].MenuState!=MSAT_Disabled,"original appearance leaves placement editable");
         Check(Editor.MountTab.PreviewWeapons[0].Mesh==class'ONSHoverTankCannon'.default.Mesh,"original appearance uses original cannon mesh in tuning");
         Editor.MountTab.PreviewZoom=1.4;Editor.MountTab.PreviewPanY=45;Editor.MountTab.PreviewPanZ=-25;
@@ -100,7 +100,7 @@ function Timer()
         Check(Editor.MountTab.PreviewZoom==OldZoom && Editor.MountTab.PreviewPanY==OldY && Editor.MountTab.PreviewPanZ==OldZ &&
             Editor.MountTab.PreviewYaw==OldYaw && Editor.MountTab.PreviewPitch==OldPitch && Editor.MountTab.PreviewDistance==OldDistance,"restore values preserves all viewport state");
         W.MountOffset=vect(12,-6,30);W.MountRotation=rot(0,4096,0);W.MountScale=0.85;
-        W.WeaponClass="Onslaught.ONSRVWebLauncher";Editor.SetMount(0,W);Editor.UpdateDisplay();
+        W.WeaponClass="Onslaught.ONSRVWebLauncher";W.bUseOriginalAppearance=false;Editor.SetMount(0,W);Editor.UpdateDisplay();
         Editor.SaveWithoutClosing(None);GUITabControl(Editor.Controls[3]).ActivateTabByPanel(Editor.WeapTab,true);
     }
     else if(Stage==4)
