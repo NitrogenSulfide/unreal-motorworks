@@ -7,12 +7,13 @@ event PreBeginPlay()
  local VehicleStuffFix.VehicleProperties VP;
  Super.PreBeginPlay();
  VP=class'VehicleStuffFix'.static.GetDefaultProfile(1);
- VP.DWeapons[0].WeaponClass="Custom";
+ VP.DWeapons[0].WeaponClass="Onslaught.ONSAttackCraftGun";
+ VP.DWeapons[0].bCustomProjectiles=true;
  VP.DWeapons[0].Mode[0]="XWeapons.FlakShell";
  VP.DWeapons[0].Mode[1]="XWeapons.RocketProj";
  VP.DWeapons[0].Rate[0]=0.60;
  VP.DWeapons[0].Rate[1]=0.90;
- VP.DWeapons[0].bUseOriginalAppearance=true;
+ VP.DWeapons[0].bUseOriginalAppearance=false;
  class'VehicleStuffFix'.static.SetVPElement(1,VP);
  for(i=0;i<11;i++) class'MutWoRM_vFix'.default.WoRMVehClassName[i]=string(class'MutWoRM_vFix'.default.ReplacedVehicleClass[i]);
 }
@@ -80,13 +81,14 @@ function Timer()
   V.bAlwaysRelevant=true;
   PC=PlayerController(Probe.Owner); PC.SetViewTarget(V); PC.ClientSetViewTarget(V);
   Probe.Target=V; Probe.TargetWeapon=V.Weapons[0]; Probe.ExpectedHealth=V.Health; Probe.ExpectedMax=V.HealthMax;
-  Probe.ExpectedScale=class'ONSHoverTankCannon'.default.DrawScale*0.75; Probe.Phase=2; Stage=4; return;
+  Probe.ExpectedScale=class'ONSAttackCraftGun'.default.DrawScale*0.75; Probe.Phase=2; Stage=4; return;
  }
  if(Stage==4 && Ack==2)
  {
   V=Probe.Target;
   VP=class'VehicleStuffFix'.static.GetDefaultProfile(1);
   VP.DWeapons[0].WeaponClass="Onslaught.ONSAttackCraftGun";
+  VP.DWeapons[0].bCustomProjectiles=false;
   VP.DWeapons[0].bUseOriginalAppearance=true;
   VP.PWeapons[0].WeaponClass="Onslaught.ONSAttackCraftGun";
   VP.PWeapons[0].bUseOriginalAppearance=true;
@@ -118,6 +120,8 @@ function Timer()
   Check(Index>=0,"saved tank profile exists on server");
   if(Index>=0) VP=class'VehicleStuffFix'.static.GetDefaultProfile(Index);
   Check(Index>=0 && VP.Health==2345,"remote Save committed acknowledged health on server");
+  Check(VP.DWeapons[0].bCustomProjectiles && VP.DWeapons[0].WeaponClass=="Onslaught.ONSAttackCraftGun","remote Save keeps selected gun and independent custom flag on server");
+  Check(VP.DWeapons[0].Mode[0]=="XWeapons.FlakShell","remote Save keeps custom projectile on server");
   PC=PlayerController(Probe.Owner);PC.PlayerReplicationInfo.bAdmin=False;
   Probe.Phase=4;Stage=6;return;
  }
@@ -127,6 +131,23 @@ function Timer()
   Check(Index>=0,"saved tank profile exists on server");
   if(Index>=0) VP=class'VehicleStuffFix'.static.GetDefaultProfile(Index);
   Check(Index>=0 && VP.Health==2345,"rejected remote Save preserves server settings");
+  PC=PlayerController(Probe.Owner);PC.PlayerReplicationInfo.bAdmin=True;
+  Probe.Phase=8;Stage=10;return;
+ }
+ if(Stage==10 && Ack==8)
+ {
+  VP=class'VehicleStuffFix'.static.GetDefaultProfile(0);
+  Check(VP.VehicleName=="RemoteCap" && VP.Health==1000000,"server caps raw remote health and preserves profile name");
+  Check(VP.SpeedScale==5 && VP.Friction==5 && VP.Mass==5 && VP.WheelScale==3 && VP.JumpHeight==3 && VP.HoverHeight==2,"server clamps all six raw remote scale values");
+  V=Spawn(class'ONSHoverTank',,,vect(17000,17000,3000));
+  Check(V!=None,"capped remote profile vehicle spawns");
+  if(V==None)return;
+  Tuner.ChangeVehicleProps(V,0);V.bAlwaysRelevant=true;
+  Check(V.Health==1000000 && V.HealthMax==1000000,"raw remote profile applies capped runtime health");
+  Probe.Target=V;Probe.Phase=9;Stage=11;return;
+ }
+ if(Stage==11 && Ack==9)
+ {
   Log("[MotorworksNetworkServer] RESULT server_failures=" $ Failures $ " client_checks=" $ ClientChecks $ " client_failures=" $ ClientFailures);
   Probe.Phase=5;Stage=7;Ticks=0;return;
  }

@@ -95,7 +95,7 @@ function Timer()
         OldYaw=Editor.MountTab.PreviewYaw;OldPitch=Editor.MountTab.PreviewPitch;OldDistance=Editor.MountTab.PreviewDistance;
         Passenger=Editor.GetVehicleWeapons(false,2);Editor.MountTab.ResetMount(None);W=Editor.GetVehicleWeapons(true,0);
         Check(W.MountOffset==vect(0,0,0) && W.MountRotation==rot(0,0,0) && W.MountScale==1,"restore defaults resets only current mount values");
-        Check(W.WeaponClass=="Custom" && W.bUseOriginalAppearance && W.Mode[0]=="XWeapons.FlakShell","restore mount preserves projectile and appearance settings");
+        Check(W.bCustomProjectiles && W.bUseOriginalAppearance && W.Mode[0]=="XWeapons.FlakShell","restore mount preserves projectile and appearance settings");
         Check(Editor.GetVehicleWeapons(false,2).MountOffset==Passenger.MountOffset,"restore mount preserves other mount values");
         Check(Editor.MountTab.PreviewZoom==OldZoom && Editor.MountTab.PreviewPanY==OldY && Editor.MountTab.PreviewPanZ==OldZ &&
             Editor.MountTab.PreviewYaw==OldYaw && Editor.MountTab.PreviewPitch==OldPitch && Editor.MountTab.PreviewDistance==OldDistance,"restore values preserves all viewport state");

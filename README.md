@@ -21,6 +21,8 @@ This ZIP contains three compiled packages, their cache registrations, and this R
 - **Synchronized in-order**: drag members in the bottom-left group list to change the spawn sequence, then Save. Independent random groups keep normal selection behavior.
 - **View / tune highlighted vehicle**: open the tuner at the selected entry.
 - **Duplicate as variant**: create a persistent independent profile. Name it, change settings, and save. Delete is available only for duplicates.
+- **Weapons and custom projectiles**: choose the gun in the weapon dropdown. The separate Custom projectiles checkbox controls custom firing; Edit opens its projectile/interval draft. Done applies the draft and enables custom firing; Cancel or Escape discards it. Turning custom firing off restores the selected gun’s normal behavior and keeps your projectile choices for later. Use original gun appearance overrides the selected gun’s appearance and muzzle with the vehicle’s stock gun.
+- **Weapons and custom projectiles**: choose the gun in the weapon dropdown. The separate Custom projectiles checkbox controls custom firing; Edit opens its projectile/interval draft. Done applies the draft and enables custom firing; Cancel or Escape discards it. Turning custom firing off restores the selected gun’s normal behavior and keeps your projectile choices for later. Use original gun appearance overrides the selected gun’s appearance and muzzle with the vehicle’s stock gun.
 - **Variants and previews**: duplicate names are numbered independently for each base vehicle. Motorpool previews use the selected profile’s saved weapon and placement settings. In-group first and Modified first start enabled.
 - **Modification markers**: a green asterisk marks saved vehicle changes; a red asterisk marks changes made since opening the editor. Reverting to the opening values clears the red marker. Restore Defaults clears the marker immediately; use Save to commit the reset, or Cancel to discard it. The key sits below the Name field.
 - **Placement**: Restore Default Values resets only the selected mount’s offsets, angles and scale, while preserving the preview camera. Original gun appearance leaves placement editable because transforms still affect the gun and muzzle. Preview driver/passenger weapon-mount position (Unreal units), rotation (degrees), and uniform scale. Integrated stationary-turret weapons retain their native mounts.
@@ -31,9 +33,17 @@ This ZIP contains three compiled packages, their cache registrations, and this R
 
 Save commits changes without closing the editor; Save & Close commits and closes it. Cancel discards the current editor's unsaved changes. Motorpool has its own Save button. During a standalone match, `mutate VehicleSuite Config` opens the hub. Tuning saves apply immediately in standalone; Motorpool changes take effect on the next map.
 
+Custom firing uses projectile behavior with the selected gun’s model and muzzle. It does not reproduce every gun’s special logic, targeting, or animations. If neither custom projectile is configured, the selected gun keeps normal firing. Custom projectile editing is available for supported Onslaught vehicle and stationary-turret mounts; Assault vehicle weapon logic remains native.
+
+Custom firing uses projectile behavior with the selected gun’s model and muzzle. It does not reproduce every gun’s special logic, targeting, or animations. If neither custom projectile is configured, the selected gun keeps normal firing. Custom projectile editing is available for supported Onslaught vehicle and stationary-turret mounts; Assault vehicle weapon logic remains native.
+
 The rename keeps the internal `VehicleSuite`, `VehicleStuffFix`, and `WoRM2k4Fix` package/configuration names so existing presets and mutator references continue to work.
 
 ## Presets, updates, and removal
+
+Older profiles saved with the former “Custom” gun choice retain their projectiles and intervals, and migrate to custom firing with the stock gun as their starting selection. Those profiles did not record the gun selection they replaced; select a different gun again if desired.
+
+Older profiles saved with the former “Custom” gun choice retain their projectiles and intervals, and migrate to custom firing with the stock gun as their starting selection. Those profiles did not record the gun selection they replaced; select a different gun again if desired.
 
 Existing `KangMods.ini` and `VehicleStuffFix.ini` remain authoritative and are never bundled or overwritten. Back them up before experimenting. Existing Motorworks replacement groups and named group presets remain available. Original-only WoRM2k4 presets are not automatically imported; their INI sections are preserved.
 

@@ -5,6 +5,7 @@ var int Phase, ExpectedHealth, ExpectedMax, ReceivedPhase, Checks, Failures, Wai
 var float ExpectedScale;
 var VSIGGUI Editor;
 var int SaveStage;
+var VehicleStuffFix.PartialVehicleProperties RawVP;
 var GUIController Menus;
 var MutMotorworksNetworkTest Harness;
 replication
@@ -45,6 +46,8 @@ simulated function Timer()
    PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());
    Editor.SelectProfile("Onslaught.ONSHoverTank");
    Check(!Editor.CanUseOriginalAppearance(2),"empty passenger weapon safely disables appearance without a class load");
+   Editor.SetWeaponClass("Onslaught.ONSAttackCraftGun",0);Editor.SetCustomProjectilesEnabled(0,true);
+   VP=Editor.GetCurrentVP();VP.DWeapons[0].Mode[0]="XWeapons.FlakShell";Editor.SetCurrentVP(VP);
    Editor.HealthChange(2345);Editor.SaveWithoutClosing(None);
    Check(Editor.bSendingSave && Editor.VehicleMarkerState(Editor.CurrentIndex)==2,"remote Save remains unsaved until server acknowledgment");
    Check(!Editor.SaveWithoutClosing(None),"remote Save prevents overlapping transfers");
@@ -57,6 +60,8 @@ simulated function Timer()
    Editor.CancelAndClose(None);PC.ClientOpenMenu("VehicleStuffFix.VSIGGUI");Editor=VSIGGUI(Menus.TopPage());Editor.SelectProfile("Onslaught.ONSHoverTank");
    Check(Editor.GetCurrentVP().Health==2345,"Cancel preserves only the acknowledged remote snapshot");
    Check(Editor.GetCurrentVP().VehicleName=="Network save tank","remote snapshot preserves spaces in the vehicle name");
+   Check(Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles && Editor.GetCurrentVP().DWeapons[0].WeaponClass=="Onslaught.ONSAttackCraftGun","remote reopened snapshot keeps selected gun and independent flag");
+   Check(Editor.GetCurrentVP().DWeapons[0].Mode[0]=="XWeapons.FlakShell","remote reopened snapshot keeps custom projectile");
    Editor.CancelAndClose(None);SaveStage=2;Report(3,Checks,Failures);return;
   }
   if(Phase==4 && SaveStage==2)
@@ -73,6 +78,36 @@ simulated function Timer()
    Editor.CancelAndClose(None);SaveStage=4;Report(4,Checks,Failures);return;
   }
   return;
+ }
+ if(Phase==8)
+ {
+  foreach DynamicActors(class'PlayerController',PC) if(PC.Player!=None) break;
+  if(PC==None)return;
+  if(SaveStage==4)
+  {
+   // Raw client protocol intentionally bypasses all editor and profile setters.
+   PC.ConsoleCommand("mutate VehicleStuffFix SU LimitBoundary");
+   RawVP.VehicleName="RemoteCap";RawVP.VehicleClass="Onslaught.ONSHoverTank";
+   RawVP.SpeedScale=99;RawVP.Friction=99;RawVP.Mass=99;RawVP.WheelScale=99;RawVP.JumpHeight=99;RawVP.HoverHeight=99;RawVP.Health=2147483647;
+   PC.ConsoleCommand("mutate VehicleStuffFix U M 0" @ GetPropertyText("RawVP") @ "0 LimitBoundary");
+   PC.ConsoleCommand("mutate VehicleStuffFix U E LimitBoundary");
+   PC.ConsoleCommand("mutate VehicleStuffFix EU LimitBoundary");
+   SaveStage=5;WaitTicks=0;return;
+  }
+  if(SaveStage==5)
+  {
+   WaitTicks++;if(WaitTicks<10)return;
+   Check(true,"raw oversized remote transfer sent from real client");
+   SaveStage=6;Report(8,Checks,Failures);
+  }
+  return;
+ }
+ if(Phase==9)
+ {
+  if(ReceivedPhase==9 || Target==None)return;
+  WaitTicks++;if(WaitTicks<12)return;
+  Check(Target.Health==1000000 && Target.HealthMax==1000000,"server capped million HP replicates to real client");
+  ReceivedPhase=9;Report(9,Checks,Failures);return;
  }
  if(Phase==5)
  {
@@ -123,10 +158,10 @@ simulated function Timer()
   Check(CW!=None,"variant custom weapon reached client");
   if(CW!=None)
   {
-   Check(CW.bSetupReady && CW.AppearanceClass==class'ONSHoverTankCannon' && CW.Mesh==class'ONSHoverTankCannon'.default.Mesh,"original gun mesh and ready flag reached client");
+   Check(CW.bSetupReady && CW.AppearanceClass==class'ONSAttackCraftGun' && CW.Mesh==class'ONSAttackCraftGun'.default.Mesh,"selected gun mesh and ready flag reached client");
    Check(CW.ProjectileClass==class'XWeapons.FlakShell' && CW.AltFireProjectileClass==class'XWeapons.RocketProj',"both custom projectile classes reached client");
    Check(Abs(CW.FireInterval-0.60)<0.001 && Abs(CW.AltFireInterval-0.90)<0.001,"both custom fire intervals reached client");
-   Check(CW.WeaponFireAttachmentBone==class'ONSHoverTankCannon'.default.WeaponFireAttachmentBone && CW.WeaponFireOffset==class'ONSHoverTankCannon'.default.WeaponFireOffset,"original muzzle reached client");
+   Check(CW.WeaponFireAttachmentBone==class'ONSAttackCraftGun'.default.WeaponFireAttachmentBone && CW.WeaponFireOffset==class'ONSAttackCraftGun'.default.WeaponFireOffset,"selected muzzle reached client");
   }
   Check(VSize(W.RelativeLocation-vect(12,-6,24))<0.1,"variant mount translation reached client");
   Check(W.RelativeRotation.Yaw==4096,"variant mount rotation reached client");

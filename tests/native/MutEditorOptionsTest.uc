@@ -124,7 +124,7 @@ function Timer()
             Editor.WeapTab.OriginalAppearanceChanged(Editor.WeapTab.Controls[18]);
             Check(Editor.GetCurrentVP().DWeapons[0].WeaponClass=="Onslaught.ONSHoverTankCannon",
                 "appearance toggle cannot overwrite an ordinary selected weapon");
-            Editor.SetWeaponClass("Custom",0);Editor.WeapTab.SetCBPosition("Custom",0);
+            Editor.SetCustomProjectilesEnabled(0,true);
             // Reset the fixture checkbox before real pointer activation.
             moCheckBox(Editor.WeapTab.Controls[18]).SetComponentValue("False",true);
 
@@ -137,7 +137,7 @@ function Timer()
         {
             Check(Editor.GetCurrentVP().DWeapons[0].bUseOriginalAppearance,
                 "actual per-weapon checkbox enables original appearance");
-            Check(Editor.GetCurrentVP().DWeapons[0].WeaponClass=="Custom","appearance checkbox preserves Custom selection");
+            Check(Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles,"appearance checkbox preserves custom projectile flag");
             PC.ConsoleCommand("shot");OptionCue(Editor.Controls[19],4);
         }
         else if (HealthPhase == 7)

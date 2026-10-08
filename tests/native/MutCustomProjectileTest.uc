@@ -54,7 +54,7 @@ function SetFields(string Primary, string Alternate, string Rate, string AltRate
 }
 function CheckSettings(VehicleStuffFix.VehicleProperties VP, string Prefix)
 {
-    Check(VP.DWeapons[0].WeaponClass == "Custom", Prefix $ " selects custom driver weapon");
+    Check(VP.DWeapons[0].bCustomProjectiles, Prefix $ " selects custom driver weapon");
     Check(VP.DWeapons[0].Mode[0] == "XWeapons.FlakShell" &&
         VP.DWeapons[0].Mode[1] == "XWeapons.RocketProj", Prefix $ " retains both driver projectiles");
     Check(Abs(VP.DWeapons[0].Rate[0]-0.6)<0.001 && Abs(VP.DWeapons[0].Rate[1]-0.9)<0.001,
@@ -95,7 +95,7 @@ function VerifyReload(PlayerController PC)
         }
         Check(VP.ProfileId == 1, "restart loads saved variant identity");
         CheckSettings(VP, "fresh process");
-        Check(VP.PWeapons[0].WeaponClass == "Custom" && VP.PWeapons[0].Mode[0] == "XWeapons.FlakShell" &&
+        Check(VP.PWeapons[0].bCustomProjectiles && VP.PWeapons[0].Mode[0] == "XWeapons.FlakShell" &&
             Abs(VP.PWeapons[0].Rate[0]-0.7)<0.001, "fresh process retains passenger custom selection and fields");
         for (i = 0; i < Pool.VehicleFactories.Length; i++)
             if (Pool.VehicleFactories[i].Factory.VehicleClass == class'ONSHoverTank')
@@ -162,8 +162,9 @@ function Timer()
     }
     else if (Stage == 1)
     {
-        moComboBox(Editor.WeapTab.Controls[0]).SetIndex(1);
-        Check(Editor.GetCurrentVP().DWeapons[0].WeaponClass == "Custom", "choosing Custom in weapon dropdown updates saved model");
+        moCheckBox(Editor.WeapTab.Controls[24]).SetComponentValue("True",true);
+        Editor.WeapTab.CustomProjectilesChanged(Editor.WeapTab.Controls[24]);
+        Check(Editor.GetCurrentVP().DWeapons[0].bCustomProjectiles && Editor.GetCurrentVP().DWeapons[0].WeaponClass=="Onslaught.ONSHoverTankCannon", "custom projectile toggle preserves selected gun");
         Editor.SetWeaponClass("Onslaught.ONSHoverTankCannon", 0); Editor.UpdateDisplay();
         Cue(Editor.WeapTab.Controls[6]);
     }
@@ -201,7 +202,7 @@ function Timer()
         PC.ConsoleCommand("shot"); Dialog.CloseWindow(None);
         Editor.WeapTab.OpenCustomWeaponGUI(Editor.WeapTab.Controls[8]); Dialog = VSCustomWeaponGUI(Menus.TopPage());
         SetFields("XWeapons.FlakShell", "", "0.7", "0"); Dialog.CloseWindow(None);
-        Check(Editor.GetCurrentVP().PWeapons[0].WeaponClass == "Custom", "passenger dialog activates exact passenger slot");
+        Check(Editor.GetCurrentVP().PWeapons[0].bCustomProjectiles, "passenger dialog activates exact passenger slot");
         Editor.SaveAndClose(None);
     }
     else if (Stage == 7)
