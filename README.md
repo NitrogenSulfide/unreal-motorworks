@@ -49,7 +49,7 @@ To uninstall, close UT2004 and remove only `UnrealMotorworks.u` and `UnrealMotor
 
 Both extra-client-package lists default to empty. A fresh install does not request the author's custom vehicles or voice packs. Server admins using custom vehicles can list their actual package names under `[UnrealMotorworks.MutVehicleSuite]` in `UnrealMotorworks.ini` using `VehicleServerPackages[0]=YourPackage`, and further indices up to 31. `VoiceServerPackages[0]=YourVoicePackage` is an optional explicit override. Only configure content the server actually installs and needs. Standalone play skips this registration.
 
-This is a public beta, built on native Linux OldUnreal 3374. Beta.2 fixes missing weapon/body attachments in editor previews for supported custom vehicles; gameplay behavior is unchanged. This exact build passed 100 editor/save/reload checks at 2560×1440, 49 preview checks across 16 vehicle variants, and 60 standalone gameplay checks covering vehicle entry, driving, firing, and exit. The preview fix was also tested by me in the installed game. Beta.1 passed editor regressions at 1920×1080, 2560×1440, and 3840×2160; those resolution checks were not all repeated for beta.2. Feature screenshots below are the earlier 4K stock-feature captures. Native Windows remains unvalidated.
+This is a public beta, built on native Linux OldUnreal 3374. Beta.2 fixes missing weapon/body attachments in editor previews for supported custom vehicles; gameplay behavior is unchanged. This exact build passed 100 editor/save/reload checks at 2560×1440, 49 preview checks across 16 vehicle variants, and 60 standalone gameplay checks covering vehicle entry, driving, firing, and exit. The preview fix was also tested by me in the installed game. Beta.1 passed editor regressions at 1920×1080, 2560×1440, and 3840×2160; those resolution checks were not all repeated for beta.2. Feature screenshots below show the beta.3 UI in original 4K captures with stock vehicles. Native Windows remains unvalidated.
 
 **Limited multiplayer testing (beta.1):** one native OldUnreal dedicated server and one local client, with separate configurations. Joining, variant respawns, health, replacement weapons, and mount placement passed. Driving and firing were tested by me during beta development. Automated tests also exercised custom projectile firing and persistence. The dedicated server/client checks were not repeated for beta.2; runtime gameplay code is unchanged. These checks do not establish exhaustive multiplayer gameplay coverage. Internet play, multiple clients, listen servers, and package downloads remain unverified. Compatibility with every custom vehicle is not guaranteed.
 
@@ -69,7 +69,7 @@ The Blue Natto avatar appears beside the centered author credit. The in-game Cre
 
 ## Feature screenshots
 
-Original in-game 4K captures using stock vehicles and an example tuning variant.
+Original in-game 4K captures of **v0.3.0-beta.3**, using stock vehicles and an example tuning variant.
 
 ![Replacement groups and named variants](docs/screenshots/01-replacement-groups-3840x2160.png)
 ![Vehicle tuning and preview](docs/screenshots/02-vehicle-tuning-3840x2160.png)

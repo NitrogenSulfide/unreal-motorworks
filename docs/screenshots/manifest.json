@@ -1,14 +1,16 @@
 {
+  "release": "v0.3.0-beta.3",
+  "capture": "Original in-engine 4K captures of the beta.3 release using stock vehicles and a named Goliath variant.",
   "images": [
     {
       "file": "docs/screenshots/01-replacement-groups-3840x2160.png",
-      "sha256": "857b189a1641b5c8fc3b9984d9358a9169428b5c1b852b0cf034fbafc5fc86c5",
+      "sha256": "d4ac3533c7c75e487b5e0891800be197461eac875336ae64b4b8c7ca434d8e34",
       "width": 3840,
       "height": 2160
     },
     {
       "file": "docs/screenshots/02-vehicle-tuning-3840x2160.png",
-      "sha256": "21c621a68177de5e390abe5d5f69d64657fd49f6d84946e8ec4c1b50e9ef785b",
+      "sha256": "2a559390adbc6c345449d1a2860f121fefd42111ded0126ee974071d42e19aaa",
       "width": 3840,
       "height": 2160
     },
@@ -20,7 +22,7 @@
     },
     {
       "file": "docs/screenshots/04-mount-placement-3840x2160.png",
-      "sha256": "3f667c3fbf47e912032a810a520fba0a5e2934e8100f82c38deb4fd237c3f385",
+      "sha256": "4fa25f66a660da072b22392ad3a2c09d9ebb8183bda1670b97e396f2131bc41f",
       "width": 3840,
       "height": 2160
     }
