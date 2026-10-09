@@ -1,22 +1,26 @@
-# v0.3.0-beta.2 validation
+# v0.3.0-beta.3 validation
 
-This release changes only editor preview attachments for supported custom guns. Runtime gameplay classes, registration, settings layout, and the upgrade helper are unchanged from beta.1. The release manifest identifies the ZIP and every member; the compiled package is the same build installed locally and confirmed by hands-on preview testing. Neither original mutator is required.
+This release simplifies Motorpool's save/load/close workflow. Save Set saves and activates the named set; Load Set activates a saved or built-in mapping. Close offers Save, Don't Save, and Cancel. Popup Save assigns the first unused UnnamedNN name when needed. The redundant Motorpool Save and Save & Close controls are removed. Tuning-editor save controls are unchanged.
 
-| Evidence for the beta.2 package | Result and scope |
+| Evidence for the beta.3 package | Result and scope |
 | --- | --- |
 | Native Linux build | Zero errors and warnings |
-| Editor / persistence | 100 checks at 2560×1440, including gun/default/projectile edits and a fresh-process reload |
-| Vehicle preview sweep | 49 checks across 16 vehicle variants; inspected final captures for rendered hulls and optional turret/body attachments |
-| Standalone gameplay | 60 checks across four representative vehicles, covering entry, actual driving, firing and exit; custom projectile cases included |
-| Independent review | Preview helper, both editor integrations, optional dependency behavior and exact compiled package hashes checked; no demonstrated blockers |
-| Live installation | Two installed package hashes verified; collision backups verified; 149 INIs and four original-mutator files preserved |
-| Hands-on preview verification | Tested by me after installation; reported preview now looks correct |
+| Motorpool workflow and persistence | 32 checks at each of 1920×1080 and 3840×2160, including all three close actions, Unnamed01/02/03 generation, built-in fallback, exact variant order, strategies, reopen and fresh-process restart |
+| Final visuals | Three-choice prompt and affected controls captured and inspected on isolated displays at 1080p and 4K |
+| Independent code review | Exact frozen private source and compiled package checked; no demonstrated blockers |
+| Install/rollback | Fresh and collision archive transfer verified; exact previous bytes restored and configuration sentinel preserved |
+| Live installation | Reviewed package and registration hashes verified; 149 configuration files unchanged, collision backups retained |
+| Hands-on confirmation | This beta.3 change has not yet received a separate user gameplay confirmation |
 
-One initially reported transparency case could not be reproduced in isolated tests. The tests do not establish compatibility with every custom vehicle or gun. Custom vehicle packs and private test captures are not included in the release.
+GUI delegate/controller paths were exercised. New physical pointer/keyboard interaction, gameplay and multiplayer tests were not repeated on beta.3. Replacement changes apply on the next map. Private screenshots, backend sources, personal sets and machine configuration are excluded from the public release.
+
+## Earlier beta.2 evidence
+
+Beta.2's custom-gun preview fix passed 100 editor/persistence checks at 1440p, 49 preview checks across 16 vehicle variants, and 60 standalone gameplay checks. Its preview was confirmed by hands-on testing. Those results identify beta.2, not the rebuilt beta.3 package; the preview logic is unchanged by this Motorpool workflow update.
 
 ## Earlier beta.1 evidence
 
-Beta.1 passed 100 editor checks each at 1080p, 1440p and 4K, 20 native settings-import checks plus 20 after restart, and seven custom vehicle factory/weapon-attachment checks. It also passed a native dedicated-server plus loopback-client test with separate configurations: 13 client and five server checks for joining, variant respawn, health, replacement weapons and mount transforms. Those network checks were rerun on beta.1 before this preview fix; they were not repeated on the beta.2 package. Gameplay code is unchanged. Earlier 4K feature captures remain in the README.
+Beta.1 passed 100 editor checks each at 1080p, 1440p and 4K, 20 native settings-import checks plus 20 after restart, and seven custom vehicle factory/weapon-attachment checks. It also passed a native dedicated-server plus loopback-client test with separate configurations: 13 client and five server checks for joining, variant respawn, health, replacement weapons and mount transforms. Those network checks were rerun on beta.1 before the beta.2 preview fix; they were not repeated on the beta.2 package. Gameplay code is unchanged. Earlier 4K feature captures remain in the README.
 
 Driving and firing were tested by me during beta development. Multiplayer coverage is limited: internet latency/packet loss, multiple clients, listen servers, downloads/redirects, reconnects and every third-party vehicle remain unverified. Separate cosmetic attachments have standalone gameplay evidence, not a dedicated-server cosmetic verification.
 
