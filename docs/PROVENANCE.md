@@ -81,3 +81,7 @@ VehicleStuff: [preserved listing](https://pwc.muffincdn.com/ut2004/?dir=mutators
 ## v0.3.0-beta.1 consolidation
 
 The same maintained classes and branded avatar are assembled into one Motorworks package. The original mutators, their standalone packages, custom vehicles, personal configuration and private backend source remain excluded. The optional upgrade helper contains public configuration-migration logic and class identifiers; it does not ship backend source or licensed game assets. Existing attribution and permission observations remain unchanged.
+
+## v0.3.0-beta.3 Motorpool workflow
+
+This update changes the Motorpool editor's saving, activation and closing controls. It adds no art or other licensed/private assets. The public ZIP keeps the same four-member boundary: compiled package, registration, README and unchanged optional upgrade helper. Existing original-author credits, brand-avatar publication decision and licence observations remain unchanged. Public update and the GameBanana download archive were requested on 2026-10-08.

@@ -1,10 +1,10 @@
-# Unreal Motorworks v0.3.0-beta.2 — Standalone Public Beta
+# Unreal Motorworks v0.3.0-beta.3 — Standalone Public Beta
 
 By **Blue Natto (also known as CissiaLikesEggs on Gamebanana)**, for native OldUnreal Unreal Tournament 2004 **3374 or later**.
 
 Choose vehicle replacement groups and tune vehicles through one mutator. Duplicate vehicles into independently named variants, change health and weapons, adjust weapon-mount position/rotation/scale, and optionally randomize spawn health. Unreal Motorworks includes its maintained tuning and replacement backends in one ZIP. Neither original VehicleStuff nor WoRM2k4 needs to be downloaded or installed.
 
-Download the self-contained [v0.3.0-beta.2](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.3.0-beta.2).
+Download the self-contained [v0.3.0-beta.3](https://github.com/NitrogenSulfide/unreal-motorworks/releases/tag/v0.3.0-beta.3).
 
 ## Install
 
@@ -19,7 +19,7 @@ The ZIP contains one compiled package, one mutator registration, this README, an
 
 - **Motorpool Remastered**: choose replacements for each stock vehicle slot. Groups can contain several vehicle classes or differently tuned variants of the same class. Double-click a browser vehicle to add/remove it from the selected stock group; double-click a numbered group member to remove it. Single clicks preview/select, and Space still toggles browser membership.
 - **Reset view**: restore the Motorpool preview's fitted zoom, centered position and default angle. Auto-rotate keeps your chosen setting.
-- **Synchronized in-order**: drag members in the bottom-left group list to change the spawn sequence, then Save. Independent random groups keep normal selection behavior.
+- **Synchronized in-order**: drag members in the bottom-left group list to change the spawn sequence, then Save Set. Independent random groups keep normal selection behavior.
 - **View / tune highlighted vehicle**: open the tuner at the selected entry.
 - **Duplicate as variant**: create a persistent independent profile. Name it, change settings, and save. Delete is available only for duplicates.
 - **Weapons and custom projectiles**: each mount starts with Default: [original weapon], followed by None and a divider before other guns. None removes the mount's gun. Selecting a different gun clears the previous gun's projectile overrides. Edit opens that gun's current projectile/interval draft, starting from its native defaults for a newly selected gun. Restore Defaults resets the draft to the selected gun's projectiles and intervals. Done applies edits; Cancel or Escape discards them. Reopening Edit for the same gun preserves its custom settings. Placement auto-rotate starts enabled and can be switched off.
@@ -31,7 +31,7 @@ The ZIP contains one compiled package, one mutator registration, this README, an
 - **Tuning limits**: speed, friction and mass scale cap at 5; wheel size and jump height at 3; hover height at 2; fixed and random spawn health at 1,000,000 HP.
 - **Stationary turrets**: excluded from the tuning browser for this beta. Motorpool handles vehicle factory slots.
 
-Save commits changes without closing the editor; Save & Close commits and closes it. Cancel discards the current editor's unsaved changes. Motorpool has its own Save button. During a standalone match, `mutate VehicleSuite Config` opens the hub. Tuning saves apply immediately in standalone; Motorpool changes take effect on the next map.
+Save commits changes without closing the editor; Save & Close commits and closes it. Cancel discards the current editor's unsaved changes. Motorpool’s Save Set saves and activates the named set; Load Set activates an existing set. Both apply on the next map. Close prompts with Save, Don't Save, and Cancel. Popup Save uses Unnamed01, Unnamed02, and so on when no valid set name is selected, skipping existing names. During a standalone match, `mutate VehicleSuite Config` opens the hub. Tuning saves apply immediately in standalone; Motorpool changes take effect on the next map.
 
 Custom firing uses projectile behavior with the selected gun’s model and muzzle. It does not reproduce every gun’s special logic, targeting, or animations. If neither custom projectile is configured, the selected gun keeps normal firing. Custom projectile editing is available for supported Onslaught vehicle mounts; Assault vehicle weapon logic remains native.
 
